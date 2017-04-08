@@ -10,12 +10,12 @@
     <!-- Navigation Drawer menu labels -->
     <string name="nav_home">Home</string>
     <string name="nav_own_list">My List</string>
-    <string name="nav_vacation">Vacation</string>
-    <string name="nav_events">Events</string>
-    <string name="nav_destinations">Destinations</string>
     <string name="nav_adventure">Adventure</string>
+    <string name="nav_destinations">Destinations</string>
+    <string name="nav_events">Events</string>
     <string name="nav_food">Food</string>
     <string name="nav_hikes">Hiking</string>
+    <string name="nav_vacation">Vacation</string>
 
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_item_activity_titles">
@@ -29,6 +29,7 @@
         <item>Vacation</item>
     </string-array>
 
+    <string name="other">Other</string>
     <string name="activity_title_about_us">About Us</string>
     <string name="activity_title_privacy_policy">Privacy Policy</string>
     <string name="activity_title_term_condition">Terms and Conditions</string>
