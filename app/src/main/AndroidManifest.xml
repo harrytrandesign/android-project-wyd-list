@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".activity.TermAndConditionActivity">
         </activity>
+        <activity android:name=".activity.MainFeedActivity">
+        </activity>
     </application>
 
 </manifest>

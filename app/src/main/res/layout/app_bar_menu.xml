@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="us.wetpaws.wydlist.MainActivity">
-    <!-- TODO: CHECK - That last line tell it where to be used? -->
+    tools:context="us.wetpaws.wydlist.activity.MainFeedActivity">
+    <!-- TODO: CHECK - Does that last line tell it where to be used? -->
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
