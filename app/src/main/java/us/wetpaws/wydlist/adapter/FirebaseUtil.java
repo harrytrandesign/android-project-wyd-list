@@ -11,6 +11,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseUtil {
 
+    // Format code shortcut keys: option, command, l
+
     public static DatabaseReference getBaseRef() {
         return FirebaseDatabase.getInstance().getReference();
     }
