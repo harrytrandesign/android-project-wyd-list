@@ -21,19 +21,24 @@
     <string-array name="nav_item_activity_titles">
         <item>Home</item>
         <item>My List</item>
-        <item>Vacation</item>
-        <item>Events</item>
-        <item>Destinations</item>
         <item>Adventure</item>
+        <item>Destinations</item>
+        <item>Events</item>
         <item>Food</item>
         <item>Hiking</item>
+        <item>Vacation</item>
     </string-array>
 
     <string name="activity_title_about_us">About Us</string>
     <string name="activity_title_privacy_policy">Privacy Policy</string>
+    <string name="activity_title_term_condition">Terms and Conditions</string>
     <string name="action_clear_all">Clear All</string>
     <string name="action_logout">Logout</string>
     <string name="action_mark_all_read">Mark All as Read</string>
     <string name="privacy_policy">Privacy Policy</string>
+    <string name="term_condition">Terms and Conditions</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- End String set from tutorial. -->
 </resources>
