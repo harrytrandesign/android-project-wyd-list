@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">WYDList</string>
+
+    <!-- String set from tutorial. -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_home">Home</string>
+    <string name="nav_own_list">My List</string>
+    <string name="nav_vacation">Vacation</string>
+    <string name="nav_events">Events</string>
+    <string name="nav_destinations">Destinations</string>
+    <string name="nav_adventure">Adventure</string>
+    <string name="nav_food">Food</string>
+    <string name="nav_hikes">Hiking</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>My List</item>
+        <item>Vacation</item>
+        <item>Events</item>
+        <item>Destinations</item>
+        <item>Adventure</item>
+        <item>Food</item>
+        <item>Hiking</item>
+    </string-array>
+
+    <string name="activity_title_about_us">About Us</string>
+    <string name="activity_title_privacy_policy">Privacy Policy</string>
+    <string name="action_clear_all">Clear All</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_mark_all_read">Mark All as Read</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <!-- End String set from tutorial. -->
 </resources>

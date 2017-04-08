@@ -1,5 +1,50 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- Padding Sizes -->
+    <dimen name="tiny_padding">2dp</dimen>
+    <dimen name="xsmall_padding">6dp</dimen>
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="medium_padding">12dp</dimen>
+    <dimen name="standard_padding">16dp</dimen>
+    <dimen name="large_padding">18dp</dimen>
+    <dimen name="xlarge_padding">36dp</dimen>
+
+    <!-- Font Sizes -->
+    <dimen name="mini_font">10sp</dimen>
+    <dimen name="tiny_font">12sp</dimen>
+    <dimen name="small_font">16sp</dimen>
+    <dimen name="standard_font">18sp</dimen>
+    <dimen name="medium_font">24sp</dimen>
+    <dimen name="medium_float_font">28sp</dimen>
+    <dimen name="large_font">36sp</dimen>
+    <dimen name="xlarge_font">48sp</dimen>
+
+    <!-- Custom Font Sizes -->
+    <dimen name="comment_font">10sp</dimen>
+    <dimen name="app_name_login_font">32sp</dimen>
+    <dimen name="hashtag_add_font">36sp</dimen>
+
+    <!-- Icon Sizes -->
+    <dimen name="xsmall_icon_size">24dp</dimen>
+    <dimen name="small_icon_size">28dp</dimen>
+    <dimen name="medium_icon_size">32dp</dimen>
+    <dimen name="xmedium_icon_size">36dp</dimen>
+    <dimen name="large_icon_size">48dp</dimen>
+    <dimen name="xlarge_icon_size">54dp</dimen>
+    <dimen name="app_icon_size">100dp</dimen>
+    <dimen name="user_posts_icon_size">36dp</dimen>
+    <dimen name="user_profile_width_height">75dp</dimen>
+    <dimen name="user_profile_photo_size">200dp</dimen>
+
+    <!-- Extras -->
+    <dimen name="alert_dialog_margin">24dp</dimen>
+    <dimen name="onboarding_editfield">36dp</dimen>
+
+    <dimen name="zero_spacing">0dp</dimen>
+    <dimen name="fab_margin_horizontal">8dp</dimen>
+    <dimen name="fab_margin_vertical">16dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Unused Dimensions from previous builds -->
+    <dimen name="cover_photo_image_size">200dp</dimen>
 </resources>
