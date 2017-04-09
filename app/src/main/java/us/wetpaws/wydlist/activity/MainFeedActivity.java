@@ -1,12 +1,19 @@
 package us.wetpaws.wydlist.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +24,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import us.wetpaws.wydlist.R;
 import us.wetpaws.wydlist.adapter.GlideUtil;
+import us.wetpaws.wydlist.fragment.AdventureFragment;
+import us.wetpaws.wydlist.fragment.HomeFragment;
+import us.wetpaws.wydlist.fragment.MyListFragment;
 
 import static us.wetpaws.wydlist.R.id.fab;
 
@@ -68,7 +78,7 @@ public class MainFeedActivity extends AppCompatActivity {
 
         // Load toolbar titles from the string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
-        
+
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,13 +121,148 @@ public class MainFeedActivity extends AppCompatActivity {
 
         setToolbarTitle();
 
+        if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
+            drawerLayout.closeDrawers();
 
+            toggleFab();
+            return;
+        }
 
+        Runnable mPendingRunnable = new Runnable() {
+            @Override
+            public void run() {
+                Fragment fragment = getHomeFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+                fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
+                fragmentTransaction.commitAllowingStateLoss();
+            }
+        };
 
+        if (mPendingRunnable != null) {
+            mHandler.post(mPendingRunnable);
+        }
 
+        toggleFab();
 
+        // Close the navigation drawer when item is pressed.
+        drawerLayout.closeDrawers();
+
+        // Refresh the toolbar menu
+        invalidateOptionsMenu();
 
     }
 
+    private Fragment getHomeFragment() {
+        switch (navItemIndex) {
+            case 0:
+                HomeFragment homeFragment = new HomeFragment();
+                return homeFragment;
+            case 1:
+                MyListFragment myListFragment = new MyListFragment();
+                return myListFragment;
+            case 2:
+                AdventureFragment adventureFragment = new AdventureFragment();
+                return adventureFragment;
+            default:
+                return new HomeFragment();
+        }
+    }
 
+    private void setToolbarTitle() {
+        getSupportActionBar().setTitle(activityTitles[navItemIndex]);
+    }
+
+    private void selectNavMenu() {
+        navigationView.getMenu().getItem(navItemIndex).setChecked(true);
+    }
+
+    private void setUpNavigationView() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        navItemIndex = 0;
+                        CURRENT_TAG = TAG_HOME;
+                        break;
+                    case R.id.nav_mylist:
+                        navItemIndex = 1;
+                        CURRENT_TAG = TAG_MYLIST;
+                        break;
+                    case R.id.nav_adventure:
+                        navItemIndex = 2;
+                        CURRENT_TAG = TAG_ADVENTURE;
+                        break;
+                    case R.id.nav_about_us:
+                        // Launch new Intent instead of loading a Fragment;
+                        startActivity(new Intent(MainFeedActivity.this, PrivacyPolicyActivity.class));
+                        drawerLayout.closeDrawers();
+                        return true;
+                    case R.id.nav_privacy_policy:
+                        // Launch new Intent instead of loading a Fragment;
+                        startActivity(new Intent(MainFeedActivity.this, PrivacyPolicyActivity.class));
+                        drawerLayout.closeDrawers();
+                        return true;
+
+                    case R.id.nav_term_condition:
+                        // Launch new Intent instead of loading a Fragment;
+                        startActivity(new Intent(MainFeedActivity.this, TermAndConditionActivity.class));
+                        drawerLayout.closeDrawers();
+                        return true;
+                    default:
+                        navItemIndex = 0;
+                }
+
+                // Is item in checked state, if not make it in check state
+                if (item.isChecked()) {
+                    item.setChecked(false);
+                } else {
+                    item.setCheckable(true);
+                }
+                item.setChecked(true);
+
+                loadHomeFragment();
+
+                return true;
+            }
+        });
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.openDrawer, R.string.closeDrawer) {
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        actionBarDrawerToggle.syncState();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawers();
+            return;
+        }
+
+        // When user is in another fragment and presses back key they sent back to home if they're not already at home fragment
+        if (shouldLoadHomeFragOnBackPress) {
+            if (navItemIndex != 0) {
+                navItemIndex = 0;
+                CURRENT_TAG = TAG_HOME;
+                loadHomeFragment();
+                return;
+            }
+        }
+        super.onBackPressed();
+    }
 }
