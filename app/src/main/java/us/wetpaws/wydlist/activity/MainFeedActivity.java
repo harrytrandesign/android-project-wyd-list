@@ -1,6 +1,7 @@
 package us.wetpaws.wydlist.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -63,6 +64,8 @@ public class MainFeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_feed);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.getBackground().setAlpha(0);
+        toolbar.setTitleTextColor(Color.BLACK);
 
         mHandler = new Handler();
 
