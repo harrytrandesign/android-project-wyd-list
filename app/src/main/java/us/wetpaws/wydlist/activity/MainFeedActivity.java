@@ -64,8 +64,7 @@ public class MainFeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_feed);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.getBackground().setAlpha(0);
-        toolbar.setTitleTextColor(Color.BLACK);
+        toolbar.setTitleTextColor(Color.WHITE);
 
         mHandler = new Handler();
 
