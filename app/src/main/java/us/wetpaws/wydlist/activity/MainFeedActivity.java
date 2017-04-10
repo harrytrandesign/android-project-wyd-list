@@ -27,8 +27,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import us.wetpaws.wydlist.R;
 import us.wetpaws.wydlist.adapter.GlideUtil;
 import us.wetpaws.wydlist.fragment.AdventureFragment;
+import us.wetpaws.wydlist.fragment.DestinationFragment;
+import us.wetpaws.wydlist.fragment.EventFragment;
+import us.wetpaws.wydlist.fragment.FoodFragment;
+import us.wetpaws.wydlist.fragment.HikingFragment;
 import us.wetpaws.wydlist.fragment.HomeFragment;
 import us.wetpaws.wydlist.fragment.MyListFragment;
+import us.wetpaws.wydlist.fragment.VacationFragment;
 
 import static us.wetpaws.wydlist.R.id.fab;
 
@@ -52,6 +57,11 @@ public class MainFeedActivity extends AppCompatActivity {
     private static final String TAG_HOME = "home";
     private static final String TAG_MYLIST = "my_list";
     private static final String TAG_ADVENTURE = "adventure";
+    private static final String TAG_DESTINATION = "destination";
+    private static final String TAG_EVENTS = "events";
+    private static final String TAG_FOOD = "food";
+    private static final String TAG_HIKING = "hiking";
+    private static final String TAG_VACATION = "vacation";
     public static String CURRENT_TAG = TAG_HOME;
     private String[] activityTitles;
 
@@ -167,6 +177,21 @@ public class MainFeedActivity extends AppCompatActivity {
             case 2:
                 AdventureFragment adventureFragment = new AdventureFragment();
                 return adventureFragment;
+            case 3:
+                DestinationFragment destinationFragment = new DestinationFragment();
+                return destinationFragment;
+            case 4:
+                EventFragment eventFragment = new EventFragment();
+                return eventFragment;
+            case 5:
+                FoodFragment foodFragment = new FoodFragment();
+                return foodFragment;
+            case 6:
+                HikingFragment hikingFragment = new HikingFragment();
+                return hikingFragment;
+            case 7:
+                VacationFragment vacationFragment = new VacationFragment();
+                return vacationFragment;
             default:
                 return new HomeFragment();
         }
@@ -180,6 +205,7 @@ public class MainFeedActivity extends AppCompatActivity {
         navigationView.getMenu().getItem(navItemIndex).setChecked(true);
     }
 
+    // TODO: Create a separate Class for checking the case which returns a String.
     private void setUpNavigationView() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -196,6 +222,26 @@ public class MainFeedActivity extends AppCompatActivity {
                     case R.id.nav_adventure:
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_ADVENTURE;
+                        break;
+                    case R.id.nav_destination:
+                        navItemIndex = 3;
+                        CURRENT_TAG = TAG_DESTINATION;
+                        break;
+                    case R.id.nav_events:
+                        navItemIndex = 4;
+                        CURRENT_TAG = TAG_EVENTS;
+                        break;
+                    case R.id.nav_food:
+                        navItemIndex = 5;
+                        CURRENT_TAG = TAG_FOOD;
+                        break;
+                    case R.id.nav_hiking:
+                        navItemIndex = 6;
+                        CURRENT_TAG = TAG_HIKING;
+                        break;
+                    case R.id.nav_vacation:
+                        navItemIndex = 7;
+                        CURRENT_TAG = TAG_VACATION;
                         break;
                     case R.id.nav_about_us:
                         // Launch new Intent instead of loading a Fragment;
