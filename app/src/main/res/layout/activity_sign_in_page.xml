@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/activity_sign_in_page"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="us.wetpaws.wydlist.SignInPageActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/snowboarding_bg"
+        android:scaleType="centerCrop"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="@dimen/large_padding"
+        android:paddingEnd="@dimen/xlarge_padding"
+        android:paddingStart="@dimen/xlarge_padding"
+        android:paddingTop="@dimen/large_padding"/>
+
+</RelativeLayout>

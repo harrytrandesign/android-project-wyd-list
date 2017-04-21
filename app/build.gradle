@@ -43,4 +43,4 @@ dependencies {
 }
 
 //TODO: Uncomment this line after adding Firebase in.
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'

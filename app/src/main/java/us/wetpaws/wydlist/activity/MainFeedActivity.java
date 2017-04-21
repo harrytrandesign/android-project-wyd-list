@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import us.wetpaws.wydlist.R;
 import us.wetpaws.wydlist.adapter.GlideUtil;
 import us.wetpaws.wydlist.fragment.AdventureFragment;
@@ -42,7 +43,8 @@ public class MainFeedActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private View navHeader;
-    private ImageView imageNavHeaderBackground, imageProfile;
+    private CircleImageView imageProfile;
+    private ImageView imageNavHeaderBackground;
     private TextView textName, textWebsite;
     private Toolbar toolbar;
     private FloatingActionButton floatingActionButton;
@@ -87,7 +89,7 @@ public class MainFeedActivity extends AppCompatActivity {
         textName = (TextView) navHeader.findViewById(R.id.user_display_name);
         textWebsite = (TextView) navHeader.findViewById(R.id.website);
         imageNavHeaderBackground = (ImageView) navHeader.findViewById(R.id.img_header_bg);
-        imageProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
+        imageProfile = (CircleImageView) navHeader.findViewById(R.id.img_profile);
 
         // Load toolbar titles from the string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);

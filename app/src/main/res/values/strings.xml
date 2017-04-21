@@ -29,6 +29,7 @@
         <item>Vacation</item>
     </string-array>
 
+    <string name="progress_dialog_loading">Please wait.</string>
     <string name="other">Other</string>
     <string name="activity_title_about_us">About Us</string>
     <string name="activity_title_privacy_policy">Privacy Policy</string>
