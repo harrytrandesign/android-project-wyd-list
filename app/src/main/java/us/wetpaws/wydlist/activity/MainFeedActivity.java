@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import us.wetpaws.wydlist.R;
@@ -39,6 +41,9 @@ import us.wetpaws.wydlist.fragment.VacationFragment;
 import static us.wetpaws.wydlist.R.id.fab;
 
 public class MainFeedActivity extends AppCompatActivity {
+
+    FirebaseAuth mFirebaseAuth;
+    FirebaseUser mFirebaseUser;
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
@@ -91,6 +96,8 @@ public class MainFeedActivity extends AppCompatActivity {
         imageNavHeaderBackground = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         imageProfile = (CircleImageView) navHeader.findViewById(R.id.img_profile);
 
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
         // Load toolbar titles from the string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
@@ -124,7 +131,7 @@ public class MainFeedActivity extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageNavHeaderBackground);
 
-        GlideUtil.loadProfileIcon(urlProfileImg, imageProfile);
+        GlideUtil.loadProfileIcon(mFirebaseUser.getPhotoUrl().toString(), imageProfile);
 
         // TODO: Remove later - I wanna see what this does.
         navigationView.getMenu().getItem(1).setActionView(R.layout.menu_dot);

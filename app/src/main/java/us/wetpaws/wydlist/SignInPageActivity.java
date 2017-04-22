@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import us.wetpaws.wydlist.activity.MainFeedActivity;
 import us.wetpaws.wydlist.adapter.FirebaseUtil;
+import us.wetpaws.wydlist.model.User;
 
 public class SignInPageActivity extends BaseActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
@@ -70,11 +71,11 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-//        signUpButton = (SignInButton) findViewById(R.id.sign_in_button);
-//        signUpButton.setSize(SignInButton.SIZE_WIDE);
-//        signUpButton.setColorScheme(SignInButton.COLOR_LIGHT);
-//        signUpButton.setScopes(gso.getScopeArray());
-//        signUpButton.setOnClickListener(this);
+        signUpButton = (SignInButton) findViewById(R.id.sign_in_button);
+        signUpButton.setSize(SignInButton.SIZE_WIDE);
+        signUpButton.setColorScheme(SignInButton.COLOR_LIGHT);
+        signUpButton.setScopes(gso.getScopeArray());
+        signUpButton.setOnClickListener(this);
 //
 //        termConditionButtonText = (TextView) findViewById(R.id.terms_conditions);
 //        termConditionButtonText.setOnClickListener(this);
@@ -149,22 +150,22 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
 
                                         Toast.makeText(SignInPageActivity.this, "User doesn't exist yet, creating user in database, and send to onboarding screen.", Toast.LENGTH_SHORT).show();
 
-//                                        User myUserName = new User(mFirebaseUser.getUid(), mFirebaseUser.getDisplayName());
+                                        User myUserName = new User(mFirebaseUser.getUid(), mFirebaseUser.getDisplayName());
 
-//                                        mFirebaseDatabase.child(usernamePath).child(mFirebaseUser.getUid()).setValue(myUserName).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<Void> task) {
-//
-//                                                Toast.makeText(SignInPageActivity.this, "Good Log In Done", Toast.LENGTH_SHORT).show();
-//
-//                                                hideProgressDialog();
-//
-////                                                Intent switchIntent = new Intent(SignInPageActivity.this, OnBoarding.class);
-////                                                switchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-////                                                startActivity(switchIntent);
-//
-//                                            }
-//                                        });
+                                        mFirebaseDatabase.child(usernamePath).child(mFirebaseUser.getUid()).setValue(myUserName).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                Toast.makeText(SignInPageActivity.this, "Good Log In Done", Toast.LENGTH_SHORT).show();
+
+                                                hideProgressDialog();
+
+                                                Intent switchIntent = new Intent(SignInPageActivity.this, MainFeedActivity.class);
+                                                switchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(switchIntent);
+
+                                            }
+                                        });
 
                                     }
 
@@ -192,6 +193,18 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
 
+        switch (view.getId()) {
+            case R.id.sign_in_button:
+
+                signInNow();
+
+                break;
+
+            default:
+
+                break;
+
+        }
     }
 
     @Override
