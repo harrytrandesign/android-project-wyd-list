@@ -32,7 +32,7 @@
     <dimen name="xlarge_icon_size">54dp</dimen>
     <dimen name="app_icon_size">100dp</dimen>
     <dimen name="user_posts_icon_size">36dp</dimen>
-    <dimen name="user_profile_width_height">75dp</dimen>
+    <dimen name="user_profile_width_height">60dp</dimen>
     <dimen name="user_profile_photo_size">200dp</dimen>
 
     <!-- Extras -->

@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import us.wetpaws.wydlist.MainActivity;
 import us.wetpaws.wydlist.R;
 import us.wetpaws.wydlist.adapter.GlideUtil;
 import us.wetpaws.wydlist.fragment.AdventureFragment;
@@ -62,8 +63,8 @@ public class MainFeedActivity extends AppCompatActivity {
 
     // Tags used to attach the fragments
     private static final String TAG_HOME = "home";
-    private static final String TAG_MYLIST = "my_list";
-    private static final String TAG_ADVENTURE = "adventure";
+    private static final String TAG_PUBLIC = "my_list";
+    private static final String TAG_SEARCH = "adventure";
     private static final String TAG_DESTINATION = "destination";
     private static final String TAG_EVENTS = "events";
     private static final String TAG_FOOD = "food";
@@ -96,6 +97,7 @@ public class MainFeedActivity extends AppCompatActivity {
         imageNavHeaderBackground = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         imageProfile = (CircleImageView) navHeader.findViewById(R.id.img_profile);
 
+        mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         // Load toolbar titles from the string resources
@@ -220,52 +222,31 @@ public class MainFeedActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.nav_home:
+                    case R.id.nav_list:
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_HOME;
                         break;
-                    case R.id.nav_mylist:
+                    case R.id.nav_publicfeed:
                         navItemIndex = 1;
-                        CURRENT_TAG = TAG_MYLIST;
+                        CURRENT_TAG = TAG_PUBLIC;
                         break;
-                    case R.id.nav_adventure:
+                    case R.id.nav_search:
                         navItemIndex = 2;
-                        CURRENT_TAG = TAG_ADVENTURE;
+                        CURRENT_TAG = TAG_SEARCH;
                         break;
-                    case R.id.nav_destination:
-                        navItemIndex = 3;
-                        CURRENT_TAG = TAG_DESTINATION;
-                        break;
-                    case R.id.nav_events:
-                        navItemIndex = 4;
-                        CURRENT_TAG = TAG_EVENTS;
-                        break;
-                    case R.id.nav_food:
-                        navItemIndex = 5;
-                        CURRENT_TAG = TAG_FOOD;
-                        break;
-                    case R.id.nav_hiking:
-                        navItemIndex = 6;
-                        CURRENT_TAG = TAG_HIKING;
-                        break;
-                    case R.id.nav_vacation:
-                        navItemIndex = 7;
-                        CURRENT_TAG = TAG_VACATION;
-                        break;
-                    case R.id.nav_about_us:
-                        // Launch new Intent instead of loading a Fragment;
-                        startActivity(new Intent(MainFeedActivity.this, PrivacyPolicyActivity.class));
-                        drawerLayout.closeDrawers();
-                        return true;
                     case R.id.nav_privacy_policy:
                         // Launch new Intent instead of loading a Fragment;
                         startActivity(new Intent(MainFeedActivity.this, PrivacyPolicyActivity.class));
                         drawerLayout.closeDrawers();
                         return true;
-
                     case R.id.nav_term_condition:
                         // Launch new Intent instead of loading a Fragment;
                         startActivity(new Intent(MainFeedActivity.this, TermAndConditionActivity.class));
+                        drawerLayout.closeDrawers();
+                        return true;
+                    case R.id.nav_log_off:
+                        // Launch new Intent instead of loading a Fragment;
+                        startActivity(new Intent(MainFeedActivity.this, PrivacyPolicyActivity.class));
                         drawerLayout.closeDrawers();
                         return true;
                     default:
@@ -337,6 +318,26 @@ public class MainFeedActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.action_logout:
+
+                FirebaseAuth.getInstance().signOut();
+
+                Intent mainIntent = new Intent(MainFeedActivity.this, MainActivity.class);
+                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(mainIntent);
+                finish();
+
+                break;
+
+            default:
+
+                break;
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

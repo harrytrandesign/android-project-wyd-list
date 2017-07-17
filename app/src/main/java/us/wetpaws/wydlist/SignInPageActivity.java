@@ -29,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import us.wetpaws.wydlist.activity.AgeVerifyConsent;
 import us.wetpaws.wydlist.activity.MainFeedActivity;
 import us.wetpaws.wydlist.adapter.FirebaseUtil;
 import us.wetpaws.wydlist.model.User;
@@ -150,7 +151,7 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
 
                                         Toast.makeText(SignInPageActivity.this, "User doesn't exist yet, creating user in database, and send to onboarding screen.", Toast.LENGTH_SHORT).show();
 
-                                        User myUserName = new User(mFirebaseUser.getUid(), mFirebaseUser.getDisplayName());
+                                        User myUserName = new User(mFirebaseUser.getUid(), mFirebaseUser.getDisplayName(), mFirebaseUser.getEmail(), mFirebaseUser.getPhotoUrl().toString());
 
                                         mFirebaseDatabase.child(usernamePath).child(mFirebaseUser.getUid()).setValue(myUserName).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
@@ -160,7 +161,7 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
 
                                                 hideProgressDialog();
 
-                                                Intent switchIntent = new Intent(SignInPageActivity.this, MainFeedActivity.class);
+                                                Intent switchIntent = new Intent(SignInPageActivity.this, AgeVerifyConsent.class);
                                                 switchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(switchIntent);
 

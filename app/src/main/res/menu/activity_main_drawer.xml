@@ -4,51 +4,31 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_list"
             android:icon="@drawable/beach"
-            android:title="@string/nav_home"/>
+            android:title="@string/nav_list"/>
         <item
-            android:id="@+id/nav_mylist"
+            android:id="@+id/nav_publicfeed"
             android:icon="@drawable/hiking_trail"
-            android:title="@string/nav_own_list"/>
+            android:title="@string/nav_public"/>
         <item
-            android:id="@+id/nav_adventure"
+            android:id="@+id/nav_search"
             android:icon="@drawable/restaurant"
-            android:title="@string/nav_adventure"/>
-        <item
-            android:id="@+id/nav_destination"
-            android:icon="@drawable/theme_park"
-            android:title="@string/nav_destinations"/>
-        <item
-            android:id="@+id/nav_events"
-            android:icon="@drawable/hiking_trail"
-            android:title="@string/nav_events"/>
-        <item
-            android:id="@+id/nav_food"
-            android:icon="@drawable/restaurant"
-            android:title="@string/nav_food"/>
-        <item
-            android:id="@+id/nav_hiking"
-            android:icon="@drawable/hiking_trail"
-            android:title="@string/nav_hikes"/>
-        <item
-            android:id="@+id/nav_vacation"
-            android:icon="@drawable/beach"
-            android:title="@string/nav_vacation"/>
+            android:title="@string/nav_search"/>
     </group>
 
     <item
         android:title="@string/other">
         <menu>
             <item
-                android:id="@+id/nav_about_us"
-                android:title="@string/activity_title_about_us"/>
-            <item
                 android:id="@+id/nav_privacy_policy"
                 android:title="@string/privacy_policy"/>
             <item
                 android:id="@+id/nav_term_condition"
                 android:title="@string/term_condition"/>
+            <item
+                android:id="@+id/nav_log_off"
+                android:title="@string/action_logout"/>
         </menu>
     </item>
 </menu>

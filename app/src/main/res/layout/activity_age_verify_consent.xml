@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="us.wetpaws.wydlist.activity.AgeVerifyConsent">
+
+
+    <!-- TODO: Add a date selector and a checkbox for age consent to move on. -->
+
+    <DatePicker
+        android:id="@+id/age_consent_date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/medium_padding"
+        android:layout_marginTop="@dimen/medium_padding"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"/>
+
+    <CheckBox
+        android:id="@+id/confirm_user_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/medium_padding"
+        android:layout_marginEnd="@dimen/standard_padding"
+        android:layout_marginStart="@dimen/standard_padding"
+        android:layout_marginTop="@dimen/medium_padding"
+        android:text="@string/confirm_over_13"
+        android:textAllCaps="true"
+        android:textSize="@dimen/small_font"
+        android:textStyle="bold"
+        android:theme="@style/CheckBoxAccent"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/medium_padding"
+        android:layout_marginTop="@dimen/medium_padding"
+        android:background="@color/colorAccent"
+        android:text="@string/submit_text"
+        android:textColor="@android:color/white"
+        />
+
+</LinearLayout>
