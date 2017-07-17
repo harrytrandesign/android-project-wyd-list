@@ -1,9 +1,10 @@
-<FrameLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
-             xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="us.wetpaws.wydlist.fragment.HomeFragment">
+<LinearLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="us.wetpaws.wydlist.fragment.HomeFragment">
 
     <com.google.android.gms.ads.NativeExpressAdView
         android:id="@+id/nativeExpressAdView"
@@ -13,10 +14,10 @@
         ads:adUnitId="@string/banner_ad_unit_id_test"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/user_todo_recyclerview"
+        android:id="@+id/user_wydlist_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scrollbars="vertical"/>
 
-</FrameLayout>
+</LinearLayout>

@@ -11,6 +11,17 @@
 
     <!-- TODO: Add a date selector and a checkbox for age consent to move on. -->
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/medium_padding"
+        android:layout_marginTop="@dimen/medium_padding"
+        android:text="@string/birthday"
+        android:textAllCaps="true"
+        android:textSize="@dimen/small_font"
+        android:textStyle="bold"/>
+
     <DatePicker
         android:id="@+id/age_consent_date_picker"
         android:layout_width="wrap_content"
@@ -36,12 +47,15 @@
         android:theme="@style/CheckBoxAccent"/>
 
     <Button
+        android:id="@+id/age_submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/medium_padding"
         android:layout_marginTop="@dimen/medium_padding"
         android:background="@color/colorAccent"
+        android:paddingEnd="@dimen/small_padding"
+        android:paddingStart="@dimen/small_padding"
         android:text="@string/submit_text"
         android:textColor="@android:color/white"
         />

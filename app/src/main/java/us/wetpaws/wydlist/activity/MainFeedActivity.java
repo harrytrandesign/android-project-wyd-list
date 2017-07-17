@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 import de.hdodenhof.circleimageview.CircleImageView;
 import us.wetpaws.wydlist.MainActivity;
 import us.wetpaws.wydlist.R;
+import us.wetpaws.wydlist.SignInPageActivity;
 import us.wetpaws.wydlist.adapter.GlideUtil;
 import us.wetpaws.wydlist.fragment.AdventureFragment;
 import us.wetpaws.wydlist.fragment.DestinationFragment;
@@ -246,7 +247,7 @@ public class MainFeedActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_log_off:
                         // Launch new Intent instead of loading a Fragment;
-                        startActivity(new Intent(MainFeedActivity.this, PrivacyPolicyActivity.class));
+                        startActivity(new Intent(MainFeedActivity.this, SignInPageActivity.class));
                         drawerLayout.closeDrawers();
                         return true;
                     default:
