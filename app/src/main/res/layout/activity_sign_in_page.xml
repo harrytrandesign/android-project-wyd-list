@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/snowboarding_bg"
+        android:src="@drawable/skydive_cove"
         android:scaleType="centerCrop"/>
 
     <com.google.android.gms.common.SignInButton
@@ -19,9 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
-        android:paddingBottom="@dimen/large_padding"
-        android:paddingEnd="@dimen/xlarge_padding"
-        android:paddingStart="@dimen/xlarge_padding"
-        android:paddingTop="@dimen/large_padding"/>
+        android:padding="@dimen/xlarge_padding"/>
 
 </RelativeLayout>
