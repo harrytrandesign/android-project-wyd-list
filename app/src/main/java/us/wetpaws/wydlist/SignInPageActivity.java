@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -44,6 +45,7 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
     FirebaseAuth mFirebaseAuth;
     FirebaseUser mFirebaseUser;
 
+    KenBurnsView backgroundImage;
     TextView termConditionButtonText;
     TextView privacyButtonText;
     SignInButton signUpButton;
@@ -71,6 +73,8 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
                 .build();
 
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+        backgroundImage = (KenBurnsView) findViewById(R.id.ken_burn_background_img);
 
         signUpButton = (SignInButton) findViewById(R.id.sign_in_button);
         signUpButton.setSize(SignInButton.SIZE_WIDE);
@@ -103,6 +107,17 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        backgroundImage.pause();
     }
 
     private void handleSignInResult(GoogleSignInResult result) {

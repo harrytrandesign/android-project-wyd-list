@@ -8,6 +8,10 @@
             android:icon="@drawable/beach"
             android:title="@string/nav_list"/>
         <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/beach"
+            android:title="@string/nav_profile"/>
+        <item
             android:id="@+id/nav_publicfeed"
             android:icon="@drawable/hiking_trail"
             android:title="@string/nav_public"/>

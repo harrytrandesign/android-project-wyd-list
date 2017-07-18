@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- TODO: Use many transparents for actionbar and splash main page. -->
-    <color name="colorPrimary">#FFC107</color>
-    <color name="colorPrimaryDark">#FFA000</color>
-    <color name="colorPrimaryLight">#FFECB3</color>
+    <color name="colorPrimary">#70CE66</color>
+    <color name="colorPrimaryDark">#3D9B33</color>
+    <color name="colorPrimaryLight">#D6FFCC</color>
     <color name="colorAccent">#03A9F4</color>
 
     <color name="textColor">#FFFFFF</color>

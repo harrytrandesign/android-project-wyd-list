@@ -33,12 +33,8 @@ import us.wetpaws.wydlist.SignInPageActivity;
 import us.wetpaws.wydlist.adapter.GlideUtil;
 import us.wetpaws.wydlist.fragment.AdventureFragment;
 import us.wetpaws.wydlist.fragment.DestinationFragment;
-import us.wetpaws.wydlist.fragment.EventFragment;
-import us.wetpaws.wydlist.fragment.FoodFragment;
-import us.wetpaws.wydlist.fragment.HikingFragment;
 import us.wetpaws.wydlist.fragment.HomeFragment;
 import us.wetpaws.wydlist.fragment.MyListFragment;
-import us.wetpaws.wydlist.fragment.VacationFragment;
 
 import static us.wetpaws.wydlist.R.id.fab;
 
@@ -63,15 +59,11 @@ public class MainFeedActivity extends AppCompatActivity {
     public static int navItemIndex = 0;
 
     // Tags used to attach the fragments
-    private static final String TAG_HOME = "home";
-    private static final String TAG_PUBLIC = "my_list";
-    private static final String TAG_SEARCH = "adventure";
-    private static final String TAG_DESTINATION = "destination";
-    private static final String TAG_EVENTS = "events";
-    private static final String TAG_FOOD = "food";
-    private static final String TAG_HIKING = "hiking";
-    private static final String TAG_VACATION = "vacation";
-    public static String CURRENT_TAG = TAG_HOME;
+    private static final String TAG_LIST = "list";
+    private static final String TAG_PROFILE = "profile";
+    private static final String TAG_PUBLIC = "public";
+    private static final String TAG_SEARCH = "search";
+    public static String CURRENT_TAG = TAG_LIST;
     private String[] activityTitles;
 
     private boolean shouldLoadHomeFragOnBackPress = true;
@@ -119,7 +111,7 @@ public class MainFeedActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             navItemIndex = 0;
-            CURRENT_TAG = TAG_HOME;
+            CURRENT_TAG = TAG_LIST;
             loadHomeFragment();
         }
     }
@@ -192,18 +184,6 @@ public class MainFeedActivity extends AppCompatActivity {
             case 3:
                 DestinationFragment destinationFragment = new DestinationFragment();
                 return destinationFragment;
-            case 4:
-                EventFragment eventFragment = new EventFragment();
-                return eventFragment;
-            case 5:
-                FoodFragment foodFragment = new FoodFragment();
-                return foodFragment;
-            case 6:
-                HikingFragment hikingFragment = new HikingFragment();
-                return hikingFragment;
-            case 7:
-                VacationFragment vacationFragment = new VacationFragment();
-                return vacationFragment;
             default:
                 return new HomeFragment();
         }
@@ -225,14 +205,18 @@ public class MainFeedActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.nav_list:
                         navItemIndex = 0;
-                        CURRENT_TAG = TAG_HOME;
+                        CURRENT_TAG = TAG_LIST;
+                        break;
+                    case R.id.nav_profile:
+                        navItemIndex = 1;
+                        CURRENT_TAG = TAG_PROFILE;
                         break;
                     case R.id.nav_publicfeed:
-                        navItemIndex = 1;
+                        navItemIndex = 2;
                         CURRENT_TAG = TAG_PUBLIC;
                         break;
                     case R.id.nav_search:
-                        navItemIndex = 2;
+                        navItemIndex = 3;
                         CURRENT_TAG = TAG_SEARCH;
                         break;
                     case R.id.nav_privacy_policy:
@@ -298,7 +282,7 @@ public class MainFeedActivity extends AppCompatActivity {
         if (shouldLoadHomeFragOnBackPress) {
             if (navItemIndex != 0) {
                 navItemIndex = 0;
-                CURRENT_TAG = TAG_HOME;
+                CURRENT_TAG = TAG_LIST;
                 loadHomeFragment();
                 return;
             }

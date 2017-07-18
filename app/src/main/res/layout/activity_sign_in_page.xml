@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context="us.wetpaws.wydlist.SignInPageActivity">
 
-    <ImageView
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/ken_burn_background_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/skydive_cove"
