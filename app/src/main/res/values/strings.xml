@@ -46,5 +46,9 @@
     <string name="birthday">What\'s your birthday?</string>
     <string name="error_over_13_only">Sorry our service is for those who are 13 years or older.</string>
     <string name="app_tagline_string">Where will your next adventure take you?</string>
+    <string name="ipsum_text_sample">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="bucketlist_image_description">Image that user submits to describe the bucket list action.</string>
+    <string name="bucketlist_sample_date">June 19, 2017</string>
+    <string name="bucketlist_post_imin">I\'m In</string>
     <!-- End String set from tutorial. -->
 </resources>

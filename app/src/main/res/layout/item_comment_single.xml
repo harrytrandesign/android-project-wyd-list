@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/comment_display_usericon"
+            android:layout_width="@dimen/xsmall_icon_size"
+            android:layout_height="@dimen/xsmall_icon_size"/>
+
+        <TextView
+            android:id="@+id/comment_display_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/standard_font"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/comment_display_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/medium_font"/>
+
+    <TextView
+        android:id="@+id/comment_display_timestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tiny_font"/>
 
 </LinearLayout>
