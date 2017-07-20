@@ -61,6 +61,7 @@ public class MainFeedActivity extends AppCompatActivity {
     private static final String TAG_PROFILE = "profile";
     private static final String TAG_PUBLIC = "public";
     private static final String TAG_SEARCH = "search";
+    private static final String TAG_FEEDBACK = "feedback";
     public static String CURRENT_TAG = TAG_LIST;
     private String[] activityTitles;
 
@@ -215,6 +216,10 @@ public class MainFeedActivity extends AppCompatActivity {
                     case R.id.nav_search:
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_SEARCH;
+                        break;
+                    case R.id.nav_feedback:
+                        navItemIndex = 4;
+                        CURRENT_TAG = TAG_FEEDBACK;
                         break;
                     case R.id.nav_privacy_policy:
                         // Launch new Intent instead of loading a Fragment;

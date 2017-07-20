@@ -68,9 +68,6 @@ public class HomeFragment extends Fragment {
         NativeExpressAdView nativeExpressAdView = (NativeExpressAdView) rootView.findViewById(R.id.nativeExpressAdView);
         AdRequest adRequest = new AdRequest.Builder().build();
 
-
-
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

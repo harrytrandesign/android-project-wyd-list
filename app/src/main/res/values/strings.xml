@@ -16,6 +16,7 @@
     <string name="nav_list">My List</string>
     <string name="nav_public">Public</string>
     <string name="nav_search">Search</string>
+    <string name="nav_feedback">Feedback</string>
 
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_item_activity_titles">
@@ -23,6 +24,7 @@
         <item>My List</item>
         <item>Public</item>
         <item>Search</item>
+        <item>Feedback</item>
     </string-array>
 
     <string name="progress_dialog_loading">Please wait.</string>
@@ -32,6 +34,7 @@
     <string name="activity_title_term_condition">Terms and Conditions</string>
     <string name="action_clear_all">Clear All</string>
     <string name="action_logout">Logout</string>
+    <string name="report_post">Report This Post</string>
     <string name="action_mark_all_read">Mark All as Read</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="term_condition">Terms and Conditions</string>

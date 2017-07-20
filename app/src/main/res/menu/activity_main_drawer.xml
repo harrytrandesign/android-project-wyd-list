@@ -19,6 +19,11 @@
             android:id="@+id/nav_search"
             android:icon="@drawable/restaurant"
             android:title="@string/nav_search"/>
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/restaurant"
+            android:title="@string/nav_search"/>
+
     </group>
 
     <item
