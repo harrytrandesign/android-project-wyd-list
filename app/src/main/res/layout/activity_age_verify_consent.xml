@@ -11,53 +11,61 @@
 
     <!-- TODO: Add a date selector and a checkbox for age consent to move on. -->
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/medium_padding"
-        android:layout_marginTop="@dimen/medium_padding"
-        android:text="@string/birthday"
-        android:textAllCaps="true"
-        android:textSize="@dimen/small_font"
-        android:textStyle="bold"/>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <DatePicker
-        android:id="@+id/age_consent_date_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/medium_padding"
-        android:layout_marginTop="@dimen/medium_padding"
-        android:calendarViewShown="false"
-        android:datePickerMode="spinner"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:text="@string/birthday"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/medium_font"
+            android:textStyle="bold"/>
 
-    <CheckBox
-        android:id="@+id/confirm_user_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/medium_padding"
-        android:layout_marginEnd="@dimen/standard_padding"
-        android:layout_marginStart="@dimen/standard_padding"
-        android:layout_marginTop="@dimen/medium_padding"
-        android:text="@string/confirm_over_13"
-        android:textAllCaps="true"
-        android:textSize="@dimen/small_font"
-        android:textStyle="bold"
-        android:theme="@style/CheckBoxAccent"/>
+        <DatePicker
+            android:id="@+id/age_consent_date_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"/>
 
-    <Button
-        android:id="@+id/age_submit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/medium_padding"
-        android:layout_marginTop="@dimen/medium_padding"
-        android:background="@color/colorAccent"
-        android:paddingEnd="@dimen/small_padding"
-        android:paddingStart="@dimen/small_padding"
-        android:text="@string/submit_text"
-        android:textColor="@android:color/white"
-        />
+        <CheckBox
+            android:id="@+id/confirm_user_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:layout_marginEnd="@dimen/standard_padding"
+            android:layout_marginStart="@dimen/standard_padding"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:text="@string/confirm_over_13"
+            android:textAllCaps="true"
+            android:textSize="@dimen/small_font"
+            android:textStyle="bold"
+            android:theme="@style/CheckBoxAccent"/>
+
+        <Button
+            android:id="@+id/age_submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:background="@color/colorPrimary"
+            android:paddingEnd="@dimen/small_padding"
+            android:paddingStart="@dimen/small_padding"
+            android:text="@string/submit_text"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
 
 </LinearLayout>
