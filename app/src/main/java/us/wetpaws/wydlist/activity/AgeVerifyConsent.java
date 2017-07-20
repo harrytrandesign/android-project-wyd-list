@@ -26,6 +26,7 @@ public class AgeVerifyConsent extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     FirebaseUser mFirebaseUser;
     private String usernamePath = "usernames";
+    private String verifyPath = "verifyage";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class AgeVerifyConsent extends AppCompatActivity {
 
                     UserAge userAge = new UserAge(birthdayStatedDate, verifyCoppaStatement);
 
-                    mFirebaseDatabase.child(usernamePath).child(mFirebaseUser.getUid()).child("birthday").setValue(userAge).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    mFirebaseDatabase.child(usernamePath).child(mFirebaseUser.getUid()).child(verifyPath).setValue(userAge).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
