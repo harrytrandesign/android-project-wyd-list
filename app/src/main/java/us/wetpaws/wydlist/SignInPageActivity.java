@@ -50,7 +50,7 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
     TextView privacyButtonText;
     SignInButton signUpButton;
 
-    private String usernamePath = "usernames";
+    private String usernamePath = FirebaseUtil.getUsernamePath();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

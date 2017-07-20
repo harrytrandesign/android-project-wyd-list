@@ -25,8 +25,8 @@ public class AgeVerifyConsent extends AppCompatActivity {
     private final DatabaseReference mFirebaseDatabase = FirebaseUtil.getBaseRef();
     FirebaseAuth mFirebaseAuth;
     FirebaseUser mFirebaseUser;
-    private String usernamePath = "usernames";
-    private String verifyPath = "verifyage";
+    private String usernamePath = FirebaseUtil.getUsernamePath();
+    private String verifyPath = FirebaseUtil.getVerifyPath();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

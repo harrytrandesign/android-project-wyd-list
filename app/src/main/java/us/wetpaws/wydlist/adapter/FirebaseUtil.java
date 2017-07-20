@@ -34,27 +34,43 @@ public class FirebaseUtil {
     }
 
     public static DatabaseReference getUsernameRef() {
-        return getBaseRef().child("username");
+        // User and photo and details
+        return getBaseRef().child("usernames");
     }
 
     public static String getUsernamePath() {
-        return "username/";
+        return "usernames/";
     }
 
-    public static DatabaseReference getCommentsRef() {
-        return getBaseRef().child("comments");
+
+    public static DatabaseReference getVerifiedAgeRef() {
+        // User Age Verification
+        return getBaseRef().child("verifyage");
     }
 
-    public static String getCommentPath() {
-        return "comments/";
+    public static String getVerifyPath() {
+        return "verifyage/";
     }
 
-    public static DatabaseReference getFollowingRef() {
-        return getBaseRef().child("followed");
+
+    public static DatabaseReference getTopicsRef() {
+        // Where new wyd bucket list items go
+        return getBaseRef().child("topic");
     }
 
-    public static String getFollowingPath() {
-        return "followed/";
+    public static DatabaseReference getCommentRef() {
+        // Comments for each topic
+        return getBaseRef().child("comment");
+    }
+
+    public static DatabaseReference getUserListRef() {
+        // User's own list of items they created
+        return getBaseRef().child("userwydlist");
+    }
+
+    public static DatabaseReference getFollowRef() {
+        // Following list of wyd items user subscribed to
+        return getBaseRef().child("userfollowlist");
     }
 
 }

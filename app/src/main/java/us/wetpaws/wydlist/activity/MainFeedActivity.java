@@ -27,7 +27,6 @@ import com.google.firebase.auth.FirebaseUser;
 import de.hdodenhof.circleimageview.CircleImageView;
 import us.wetpaws.wydlist.MainActivity;
 import us.wetpaws.wydlist.R;
-import us.wetpaws.wydlist.SignInPageActivity;
 import us.wetpaws.wydlist.adapter.GlideUtil;
 import us.wetpaws.wydlist.fragment.AdventureFragment;
 import us.wetpaws.wydlist.fragment.DestinationFragment;
@@ -128,6 +127,15 @@ public class MainFeedActivity extends AppCompatActivity {
 
         // TODO: Remove later - I wanna see what this does.
         navigationView.getMenu().getItem(1).setActionView(R.layout.menu_dot);
+    }
+
+    private void signOffUser() {
+        FirebaseAuth.getInstance().signOut();
+
+        Intent mainIntent = new Intent(MainFeedActivity.this, MainActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainIntent);
+        finish();
     }
 
     private void loadHomeFragment() {
@@ -233,8 +241,7 @@ public class MainFeedActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_log_off:
                         // Launch new Intent instead of loading a Fragment;
-                        startActivity(new Intent(MainFeedActivity.this, SignInPageActivity.class));
-                        drawerLayout.closeDrawers();
+                        signOffUser();
                         return true;
                     default:
                         navItemIndex = 0;
@@ -310,12 +317,13 @@ public class MainFeedActivity extends AppCompatActivity {
         switch (id) {
             case R.id.action_logout:
 
-                FirebaseAuth.getInstance().signOut();
-
-                Intent mainIntent = new Intent(MainFeedActivity.this, MainActivity.class);
-                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(mainIntent);
-                finish();
+                signOffUser();
+//                FirebaseAuth.getInstance().signOut();
+//
+//                Intent mainIntent = new Intent(MainFeedActivity.this, MainActivity.class);
+//                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(mainIntent);
+//                finish();
 
                 break;
 
