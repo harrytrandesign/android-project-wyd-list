@@ -21,8 +21,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -48,12 +46,12 @@ public class MainFeedActivity extends AppCompatActivity {
     private View navHeader;
     private CircleImageView imageProfile;
     private ImageView imageNavHeaderBackground;
-    private TextView textName, textWebsite;
+    private TextView textName;
     private Toolbar toolbar;
     private FloatingActionButton floatingActionButton;
 
     // Static image for testing the background
-    private static final String urlNavHeaderBg = "http://api.androidhive.info/images/nav-menu-header-bg.jpg";
+    private static final String urlNavHeaderBg = "menu_header.jpg";
     private static final String urlProfileImg = "https://lh3.googleusercontent.com/eCtE_G34M9ygdkmOpYvCag1vBARCmZwnVS6rS5t4JLzJ6QgQSBquM0nuTsCpLhYbKljoyS-txg";
 
     public static int navItemIndex = 0;
@@ -86,7 +84,6 @@ public class MainFeedActivity extends AppCompatActivity {
         // Navigation Drawer View's Header Section
         navHeader = navigationView.getHeaderView(0);
         textName = (TextView) navHeader.findViewById(R.id.user_display_name);
-        textWebsite = (TextView) navHeader.findViewById(R.id.website);
         imageNavHeaderBackground = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         imageProfile = (CircleImageView) navHeader.findViewById(R.id.img_profile);
 
@@ -118,13 +115,13 @@ public class MainFeedActivity extends AppCompatActivity {
 
     // Load the navigation menu header, such as header background image, profile name, etc
     private void loadNavHeader() {
-        textName.setText("Harrison Test File");
-        textWebsite.setText("wetpaws.us");
+        textName.setText(mFirebaseUser.getDisplayName());
+        imageNavHeaderBackground.setImageResource(R.drawable.menu_header);
 
-        Glide.with(this).load(urlNavHeaderBg)
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imageNavHeaderBackground);
+//        Glide.with(this).load(urlNavHeaderBg)
+//                .crossFade()
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .into(imageNavHeaderBackground);
 
         GlideUtil.loadProfileIcon(mFirebaseUser.getPhotoUrl().toString(), imageProfile);
 
@@ -292,12 +289,12 @@ public class MainFeedActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (navItemIndex == 0) {
-            getMenuInflater().inflate(R.menu.main_menu, menu);
-        }
-        if (navItemIndex == 2) {
-            getMenuInflater().inflate(R.menu.notifications, menu);
-        }
+//        if (navItemIndex == 0) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+//        }
+//        if (navItemIndex > 0) {
+//            getMenuInflater().inflate(R.menu.notifications, menu);
+//        }
         return true;
     }
 

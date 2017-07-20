@@ -6,23 +6,23 @@ package us.wetpaws.wydlist.model;
 
 public class UserAge {
 
-    private String birthdate;
+    private String dateofbirth;
     private Boolean overThirteen;
 
     public UserAge() {
     }
 
-    public UserAge(String birthdate, Boolean overthirteen) {
-        this.birthdate = birthdate;
+    public UserAge(String dateofbirth, Boolean overthirteen) {
+        this.dateofbirth = dateofbirth;
         this.overThirteen = overthirteen;
     }
 
-    public String getBirthdate() {
-        return birthdate;
+    public String getDateofbirth() {
+        return dateofbirth;
     }
 
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
+    public void setDateofbirth(String dateofbirth) {
+        this.dateofbirth = dateofbirth;
     }
 
     public Boolean getOverThirteen() {

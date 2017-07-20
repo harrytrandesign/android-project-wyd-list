@@ -19,6 +19,7 @@
 
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_item_activity_titles">
+        <item>My Profile</item>
         <item>My List</item>
         <item>Public</item>
         <item>Search</item>
@@ -41,5 +42,6 @@
     <string name="confirm_over_13">I confirm that I am over the age of 13.</string>
     <string name="birthday">What\'s your birthday?</string>
     <string name="error_over_13_only">Sorry our service is for those who are 13 years or older.</string>
+    <string name="app_tagline_string">Where will your next adventure take you?</string>
     <!-- End String set from tutorial. -->
 </resources>
