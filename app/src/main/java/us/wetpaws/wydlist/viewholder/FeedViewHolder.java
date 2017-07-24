@@ -1,11 +1,13 @@
 package us.wetpaws.wydlist.viewholder;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import us.wetpaws.wydlist.R;
+import us.wetpaws.wydlist.adapter.GlideUtil;
 
 /**
  * Created by HTDWPS on 7/24/17.
@@ -26,6 +28,20 @@ public class FeedViewHolder extends RecyclerView.ViewHolder {
         bucketlist_post_timestamp = (TextView) itemView.findViewById(R.id.bucketlist_date_timestamp);
     }
 
-    // TODO: Create the setter methods.
+    public void setBackgroundImage(String url) {
+        if (url != null) {
+            GlideUtil.loadProfileIcon(url, bucketlist_bg_image);
+        } else {
+            bucketlist_bg_image.setBackgroundColor(Color.parseColor("#000000"));
+        }
+    }
 
+    public void setBucketTitle(String text) {
+        bucketlist_post_title.setText(text);
+    }
+
+    public void setBucketDateTimestamp(final String timestamp) {
+        bucketlist_post_timestamp.setText(timestamp);
+    }
+    
 }

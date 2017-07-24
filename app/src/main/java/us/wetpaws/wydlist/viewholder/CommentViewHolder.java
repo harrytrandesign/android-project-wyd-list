@@ -48,7 +48,7 @@ public class CommentViewHolder extends RecyclerView.ViewHolder {
         comment_user_displaytext.setText(text);
     }
 
-    public void setTodo_timestamp(final String timestamp) {
+    public void setCommentTimestamp(final String timestamp) {
         comment_user_timestamp.setText(timestamp);
     }
 
