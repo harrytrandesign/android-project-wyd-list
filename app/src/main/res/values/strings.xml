@@ -50,5 +50,6 @@
     <string name="bucketlist_image_description">Image that user submits to describe the bucket list action.</string>
     <string name="bucketlist_sample_date">June 19, 2017</string>
     <string name="bucketlist_post_imin">I\'m In</string>
+    <string name="user_info_no_name">Unknown Author</string>
     <!-- End String set from tutorial. -->
 </resources>

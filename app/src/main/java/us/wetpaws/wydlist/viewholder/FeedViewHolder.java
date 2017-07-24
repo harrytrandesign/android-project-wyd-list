@@ -16,6 +16,7 @@ public class FeedViewHolder extends RecyclerView.ViewHolder {
     private ImageView bucketlist_bg_image;
     private TextView bucketlist_post_title;
     private TextView bucketlist_post_timestamp;
+    private String altProfileUrl = "https://firebasestorage.googleapis.com/v0/b/wetpawslolpets.appspot.com/o/profile_image.png?alt=media&token=aa79fc5f-9fa2-4576-bbc3-e6438ffba952";
 
     public FeedViewHolder(View itemView) {
         super(itemView);
