@@ -44,7 +44,7 @@
             android:id="@+id/bucketlist_date_timestamp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/card_footer"
+            android:layout_above="@+id/card_footer"
             android:layout_alignParentStart="true"
             android:layout_marginEnd="@dimen/large_padding"
             android:background="@color/white_transparent"

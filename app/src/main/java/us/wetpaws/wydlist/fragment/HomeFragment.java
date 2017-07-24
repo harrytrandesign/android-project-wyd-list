@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
 
         wydRecyclerView.setLayoutManager(linearLayoutManager);
         wydRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
-//        wydRecyclerView.setAdapter(mWeightAdapter);
+//        wydRecyclerView.setAdapter(mFeedAdapter);
 
         nativeExpressAdView.loadAd(adRequest);
 

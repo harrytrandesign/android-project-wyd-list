@@ -1,4 +1,5 @@
-<LinearLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
+<LinearLayout android:id="@+id/main_feed_linearlayout"
+              xmlns:ads="http://schemas.android.com/apk/res-auto"
               xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
@@ -8,9 +9,9 @@
 
     <com.google.android.gms.ads.NativeExpressAdView
         android:id="@+id/nativeExpressAdView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        ads:adSize="320x80"
+        ads:adSize="FULL_WIDTHx80"
         ads:adUnitId="@string/banner_ad_unit_id_test"/>
 
     <android.support.v7.widget.RecyclerView
