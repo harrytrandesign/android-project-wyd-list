@@ -61,6 +61,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/bucketlist_post_join_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/xsmall_padding"
