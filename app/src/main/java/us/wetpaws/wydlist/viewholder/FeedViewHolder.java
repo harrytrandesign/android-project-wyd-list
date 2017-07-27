@@ -1,6 +1,5 @@
 package us.wetpaws.wydlist.viewholder;
 
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,10 +28,10 @@ public class FeedViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setBackgroundImage(String url) {
-        if (url != null) {
+        if (!url.equals("")) {
             GlideUtil.loadProfileIcon(url, bucketlist_bg_image);
         } else {
-            bucketlist_bg_image.setBackgroundColor(Color.parseColor("#000000"));
+//            bucketlist_bg_image.setBackgroundColor(Color.parseColor("#000000"));
         }
     }
 

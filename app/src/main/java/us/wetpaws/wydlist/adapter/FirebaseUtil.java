@@ -5,6 +5,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import us.wetpaws.wydlist.model.User;
+
 /**
  * Created by Wetpaws Studio on 4/8/17.
  */
@@ -31,6 +33,14 @@ public class FirebaseUtil {
             return getBaseRef().child("people").child(getCurrentUserId());
         }
         return null;
+    }
+
+    public static User getUser() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user == null) return null;
+
+        return new User(user.getUid(), user.getDisplayName(), user.getEmail(), user.getPhotoUrl().toString());
     }
 
     public static DatabaseReference getUsernameRef() {
@@ -61,6 +71,11 @@ public class FirebaseUtil {
     public static DatabaseReference getCommentRef() {
         // Comments for each topic
         return getBaseRef().child("comment");
+    }
+
+    public static DatabaseReference getMainListRef() {
+        // All in main bucketlist
+        return getBaseRef().child("mainwydlist");
     }
 
     public static DatabaseReference getUserListRef() {
