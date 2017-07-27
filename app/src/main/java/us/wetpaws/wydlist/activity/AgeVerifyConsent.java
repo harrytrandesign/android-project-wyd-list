@@ -39,14 +39,14 @@ public class AgeVerifyConsent extends AppCompatActivity {
         final CheckBox ageConsentBox = (CheckBox) findViewById(R.id.confirm_user_age);
         Button submitButton = (Button) findViewById(R.id.age_submit_button);
 
-        final int monthNumber = datePicker.getMonth() + 1;
-
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (ageConsentBox.isChecked()) {
 
                     mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                    final int monthNumber = datePicker.getMonth() + 1;
 
                     String birthdayStatedDate = monthNumber + "/" + datePicker.getDayOfMonth() + "/" + datePicker.getYear();
                     Boolean verifyCoppaStatement = ageConsentBox.isChecked();

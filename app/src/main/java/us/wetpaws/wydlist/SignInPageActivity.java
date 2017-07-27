@@ -40,6 +40,7 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
     private static final String LOG_TAG = SignInPageActivity.class.getSimpleName();
 
     private static final int RC_SIGN_IN = 9001;
+    String photoResolutionSizeString = "s300-c";
     private static GoogleApiClient mGoogleApiClient;
     private final DatabaseReference mFirebaseDatabase = FirebaseUtil.getBaseRef();
     FirebaseAuth mFirebaseAuth;
@@ -166,7 +167,13 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
 
                                         Toast.makeText(SignInPageActivity.this, "User doesn't exist yet, creating user in database, and send to onboarding screen.", Toast.LENGTH_SHORT).show();
 
-                                        User myUserName = new User(mFirebaseUser.getUid(), mFirebaseUser.getDisplayName(), mFirebaseUser.getEmail(), mFirebaseUser.getPhotoUrl().toString());
+                                        String photoQualityEnlargeRes = String.valueOf(mFirebaseUser.getPhotoUrl());
+                                        String[] splitString = photoQualityEnlargeRes.split("s96-c");
+                                        String firstString = splitString[0];
+                                        String secondString = splitString[1];
+                                        String newImageString = firstString + photoResolutionSizeString + secondString;
+
+                                        User myUserName = new User(mFirebaseUser.getUid(), mFirebaseUser.getDisplayName(), mFirebaseUser.getEmail(), newImageString);
 
                                         mFirebaseDatabase.child(usernamePath).child(mFirebaseUser.getUid()).setValue(myUserName).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override

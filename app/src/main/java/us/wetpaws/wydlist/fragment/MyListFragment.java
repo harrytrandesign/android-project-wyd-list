@@ -78,7 +78,7 @@ public class MyListFragment extends Fragment {
         User user = FirebaseUtil.getUser();
 
         GlideUtil.loadImage(user.getUserPhoto(), profileImageView);
-        profileDisplayName.setText(user.getUserDisplayName() + " Wants To Do:");
+        profileDisplayName.setText(String.format("%s Wants To Do:", user.getUserDisplayName()));
 
         mainFeedReference = FirebaseUtil.getMainListRef();
 
