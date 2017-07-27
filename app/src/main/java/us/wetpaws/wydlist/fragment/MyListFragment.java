@@ -36,9 +36,11 @@ import us.wetpaws.wydlist.viewholder.PrivateViewHolder;
  */
 public class MyListFragment extends Fragment {
 
+    String photoResolutionSizeString = "s300-c";
     private RecyclerView.Adapter<PrivateViewHolder> mListAdapter;
     DatabaseReference mainFeedReference;
     private OnFragmentInteractionListener mListener;
+    FirebaseUser mFirebaseUser;
     ImageView profileImageView;
     TextView profileDisplayName;
 
@@ -77,7 +79,13 @@ public class MyListFragment extends Fragment {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         User user = FirebaseUtil.getUser();
 
-        GlideUtil.loadImage(user.getUserPhoto(), profileImageView);
+        String photoQualityEnlargeRes = String.valueOf(firebaseUser.getPhotoUrl());
+        String[] splitString = photoQualityEnlargeRes.split("s96-c");
+        String firstString = splitString[0];
+        String secondString = splitString[1];
+        String newImageString = firstString + photoResolutionSizeString + secondString;
+
+        GlideUtil.loadImage(newImageString, profileImageView);
         profileDisplayName.setText(String.format("%s Wants To Do:", user.getUserDisplayName()));
 
         mainFeedReference = FirebaseUtil.getMainListRef();

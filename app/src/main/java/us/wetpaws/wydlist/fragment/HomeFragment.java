@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ServerValue;
 
 import us.wetpaws.wydlist.R;
 import us.wetpaws.wydlist.adapter.FirebaseUtil;
@@ -73,11 +72,11 @@ public class HomeFragment extends Fragment {
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         User user = FirebaseUtil.getUser();
-        BucketList bucketList = new BucketList(user, "-AKGJADSF34290854059", "Vegas Strip.", "https://exp.cdn-hotels.com/hotels/1000000/150000/140600/140596/140596_275_z.jpg", ServerValue.TIMESTAMP);
+//        BucketList bucketList = new BucketList(user, "-AKGJADSF34290854059", "Vegas Strip.", "https://exp.cdn-hotels.com/hotels/1000000/150000/140600/140596/140596_275_z.jpg", ServerValue.TIMESTAMP);
 
         mainFeedReference = FirebaseUtil.getMainListRef();
 
-        mainFeedReference.push().setValue(bucketList);
+//        mainFeedReference.push().setValue(bucketList);
 
         Query mainQuery = mainFeedReference;
 
@@ -106,7 +105,7 @@ public class HomeFragment extends Fragment {
         wydRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
         wydRecyclerView.setAdapter(mListAdapter);
 
-        nativeExpressAdView.loadAd(adRequest);
+//        nativeExpressAdView.loadAd(adRequest);
 
         return rootView;
     }
