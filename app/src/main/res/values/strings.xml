@@ -52,5 +52,7 @@
     <string name="bucketlist_post_imin">I\'m In</string>
     <string name="bucketlist_post_comment">Discuss This</string>
     <string name="user_info_no_name">Unknown Author</string>
+    <string name="display_name_want_todo">Display Name Wants To Do</string>
+    <string name="placeholder_string">Sample Data</string>
     <!-- End String set from tutorial. -->
 </resources>
