@@ -4,11 +4,27 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 
 import us.wetpaws.wydlist.R;
+import us.wetpaws.wydlist.adapter.FirebaseUtil;
+import us.wetpaws.wydlist.adapter.GlideUtil;
+import us.wetpaws.wydlist.adapter.SimpleDividerItemDecoration;
+import us.wetpaws.wydlist.model.BucketList;
+import us.wetpaws.wydlist.model.User;
+import us.wetpaws.wydlist.viewholder.PrivateViewHolder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,16 +35,12 @@ import us.wetpaws.wydlist.R;
  * create an instance of this fragment.
  */
 public class MyListFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private RecyclerView.Adapter<PrivateViewHolder> mListAdapter;
+    DatabaseReference mainFeedReference;
     private OnFragmentInteractionListener mListener;
+    ImageView profileImageView;
+    TextView profileDisplayName;
 
     public MyListFragment() {
         // Required empty public constructor
@@ -45,27 +57,57 @@ public class MyListFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static MyListFragment newInstance(String param1, String param2) {
         MyListFragment fragment = new MyListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_my_list, container, false);
+        RecyclerView wydRecyclerView = (RecyclerView) rootView.findViewById(R.id.profile_recyclerview_list);
+        profileImageView = (ImageView) rootView.findViewById(R.id.profile_user_photo);
+        profileDisplayName = (TextView) rootView.findViewById(R.id.profile_display_name);
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        User user = FirebaseUtil.getUser();
+
+        GlideUtil.loadImage(user.getUserPhoto(), profileImageView);
+        profileDisplayName.setText(user.getUserDisplayName() + " Wants To Do:");
+
+        mainFeedReference = FirebaseUtil.getMainListRef();
+
+        Query mainQuery = mainFeedReference;
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        linearLayoutManager.setReverseLayout(true);
+
+        mListAdapter = new FirebaseRecyclerAdapter<BucketList, PrivateViewHolder>(
+                BucketList.class,
+                R.layout.item_personal_wyd_list,
+                PrivateViewHolder.class,
+                mainQuery
+        ) {
+            @Override
+            protected void populateViewHolder(PrivateViewHolder viewHolder, BucketList model, int position) {
+                String feedPostKey = ((FirebaseRecyclerAdapter) mListAdapter).getRef(position).getKey();
+
+                viewHolder.setPersonal_bucketlist_title(model.getTitle());
+            }
+        };
+
+        wydRecyclerView.setLayoutManager(linearLayoutManager);
+        wydRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
+        wydRecyclerView.setAdapter(mListAdapter);
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
