@@ -101,9 +101,9 @@ public class HomeFragment extends Fragment {
                 viewHolder.setPostClickListener(new FeedViewHolder.PostClickListener() {
                     @Override
                     public void showComments() {
-                        Intent intent = new Intent(HomeFragment.this, CommentActivity.class);
+                        Intent intent = new Intent(HomeFragment.this.getActivity(), CommentActivity.class);
                         intent.putExtra(CommentActivity.POST_KEY_EXTRA, feedPostKey);
-                        startActivity(intent);
+                        HomeFragment.this.startActivity(intent);
                     }
                 });
             }
