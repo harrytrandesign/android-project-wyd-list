@@ -11,5 +11,6 @@ public class TermAndConditionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_and_condition);
+        getSupportActionBar().setTitle(R.string.term_condition);
     }
 }

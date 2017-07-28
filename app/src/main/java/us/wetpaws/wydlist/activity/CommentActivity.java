@@ -21,6 +21,8 @@ public class CommentActivity extends AppCompatActivity {
             finish();
         }
 
+        getSupportActionBar().setTitle("" + postKey);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.comments_fragment, CommentFragment.newInstance(postKey)).commit();
     }
