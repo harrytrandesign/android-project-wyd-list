@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.NativeExpressAdView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,6 +38,9 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView.Adapter<FeedViewHolder> mListAdapter;
     DatabaseReference mainFeedReference;
+    FirebaseUser firebaseUser;
+    User user;
+    Query mainQuery;
 
     private OnFragmentInteractionListener mListener;
 
@@ -71,17 +73,10 @@ public class HomeFragment extends Fragment {
         NativeExpressAdView nativeExpressAdView = (NativeExpressAdView) rootView.findViewById(R.id.nativeExpressAdView);
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        AdView adView = (AdView) rootView.findViewById(R.id.adView);
-
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        User user = FirebaseUtil.getUser();
-//        BucketList bucketList = new BucketList(user, "-AKGJADSF34290854059", "Vegas Strip.", "https://exp.cdn-hotels.com/hotels/1000000/150000/140600/140596/140596_275_z.jpg", ServerValue.TIMESTAMP);
-
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseUtil.getUser();
         mainFeedReference = FirebaseUtil.getMainListRef();
-
-//        mainFeedReference.push().setValue(bucketList);
-
-        Query mainQuery = mainFeedReference;
+        mainQuery = mainFeedReference;
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setStackFromEnd(true);
@@ -108,8 +103,7 @@ public class HomeFragment extends Fragment {
         wydRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
         wydRecyclerView.setAdapter(mListAdapter);
 
-//        nativeExpressAdView.loadAd(adRequest);
-        adView.loadAd(adRequest);
+        nativeExpressAdView.loadAd(adRequest);
 
         return rootView;
     }
