@@ -15,5 +15,6 @@
     <color name="transparentColor">#00000000</color>
     <color name="black_transparent">#99000000</color>
     <color name="white_transparent">#bbffffff</color>
+    <color name="disabled_grey">#A0A0A0</color>
 
 </resources>

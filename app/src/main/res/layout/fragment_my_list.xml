@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/profile_user_photo"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="@dimen/user_profile_height"
         android:scaleType="center"
         android:src="@drawable/skydive_cove"/>
 

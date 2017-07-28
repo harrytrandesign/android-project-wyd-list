@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import us.wetpaws.wydlist.R;
+import us.wetpaws.wydlist.fragment.CommentFragment;
 
 public class CommentActivity extends AppCompatActivity {
 
@@ -21,6 +22,6 @@ public class CommentActivity extends AppCompatActivity {
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.comments_fragment, CommentsFragment.newInstance(postKey)).commit();
+        fragmentManager.beginTransaction().add(R.id.comments_fragment, CommentFragment.newInstance(postKey)).commit();
     }
 }

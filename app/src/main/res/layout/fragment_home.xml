@@ -1,11 +1,12 @@
-<LinearLayout android:id="@+id/main_feed_linearlayout"
-              xmlns:ads="http://schemas.android.com/apk/res-auto"
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context="us.wetpaws.wydlist.fragment.HomeFragment">
+<LinearLayout
+    android:id="@+id/main_feed_linearlayout"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="us.wetpaws.wydlist.fragment.HomeFragment">
 
     <com.google.android.gms.ads.NativeExpressAdView
         android:id="@+id/nativeExpressAdView"
