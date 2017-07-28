@@ -73,6 +73,8 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        mGoogleApiClient.connect();
+
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         backgroundImage = (KenBurnsView) findViewById(R.id.ken_burn_background_img);

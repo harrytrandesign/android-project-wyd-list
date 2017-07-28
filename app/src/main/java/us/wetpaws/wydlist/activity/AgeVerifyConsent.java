@@ -3,7 +3,6 @@ package us.wetpaws.wydlist.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,11 +15,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
+import us.wetpaws.wydlist.BaseActivity;
 import us.wetpaws.wydlist.R;
 import us.wetpaws.wydlist.adapter.FirebaseUtil;
 import us.wetpaws.wydlist.model.UserAge;
 
-public class AgeVerifyConsent extends AppCompatActivity {
+public class AgeVerifyConsent extends BaseActivity {
 
     private final DatabaseReference mFirebaseDatabase = FirebaseUtil.getBaseRef();
     FirebaseAuth mFirebaseAuth;
@@ -33,8 +33,6 @@ public class AgeVerifyConsent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_age_verify_consent);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-
         final DatePicker datePicker = (DatePicker) findViewById(R.id.age_consent_date_picker);
         final CheckBox ageConsentBox = (CheckBox) findViewById(R.id.confirm_user_age);
         Button submitButton = (Button) findViewById(R.id.age_submit_button);
@@ -43,6 +41,8 @@ public class AgeVerifyConsent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (ageConsentBox.isChecked()) {
+
+                    mFirebaseAuth = FirebaseAuth.getInstance();
 
                     mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
