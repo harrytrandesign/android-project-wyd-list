@@ -17,6 +17,8 @@ public class FeedViewHolder extends RecyclerView.ViewHolder {
     private ImageView bucketlist_bg_image;
     private TextView bucketlist_post_title;
     private TextView bucketlist_post_timestamp;
+    private TextView bucketlist_enter_discussion;
+    private PostClickListener mListener;
     private String altProfileUrl = "https://firebasestorage.googleapis.com/v0/b/wetpawslolpets.appspot.com/o/profile_image.png?alt=media&token=aa79fc5f-9fa2-4576-bbc3-e6438ffba952";
 
     public FeedViewHolder(View itemView) {
@@ -25,6 +27,13 @@ public class FeedViewHolder extends RecyclerView.ViewHolder {
         bucketlist_bg_image = (ImageView) itemView.findViewById(R.id.bucketlist_image);
         bucketlist_post_title = (TextView) itemView.findViewById(R.id.bucketlist_title_text);
         bucketlist_post_timestamp = (TextView) itemView.findViewById(R.id.bucketlist_date_timestamp);
+        bucketlist_enter_discussion = (TextView) itemView.findViewById(R.id.bucketlist_post_discuss_button);
+        bucketlist_enter_discussion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.showComments();
+            }
+        });
     }
 
     public void setBackgroundImage(String url) {
@@ -42,5 +51,13 @@ public class FeedViewHolder extends RecyclerView.ViewHolder {
     public void setBucketDateTimestamp(final String timestamp) {
         bucketlist_post_timestamp.setText(timestamp);
     }
-    
+
+    public void setPostClickListener(PostClickListener listener) {
+        mListener = listener;
+    }
+
+    public interface PostClickListener {
+        void showComments();
+    }
+
 }
