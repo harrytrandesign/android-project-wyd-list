@@ -19,7 +19,7 @@
             android:id="@+id/comment_display_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/standard_font"/>
+            android:textSize="@dimen/small_font"/>
 
     </LinearLayout>
 
@@ -27,12 +27,12 @@
         android:id="@+id/comment_display_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/medium_font"/>
+        android:textSize="@dimen/tiny_font"/>
 
     <TextView
         android:id="@+id/comment_display_timestamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/tiny_font"/>
+        android:textSize="@dimen/mini_font"/>
 
 </LinearLayout>
