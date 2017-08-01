@@ -41,8 +41,8 @@ public class FeedViewHolder extends RecyclerView.ViewHolder {
             GlideUtil.loadProfileIcon(url, bucketlist_bg_image);
         } else {
             String fileName = "android.resource://us.wetpaws.wydlist/" + R.drawable.no_image_available;
+            bucketlist_bg_image.setScaleType(ImageView.ScaleType.CENTER_CROP);
             GlideUtil.loadProfileIcon(fileName, bucketlist_bg_image);
-//            bucketlist_bg_image.setBackgroundColor(Color.parseColor("#000000"));
         }
     }
 

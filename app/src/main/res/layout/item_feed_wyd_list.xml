@@ -16,7 +16,8 @@
             android:background="@android:color/black"
             android:contentDescription="@string/bucketlist_image_description"
             android:scaleType="centerCrop"
-            android:src="@drawable/skydive_cove"/>
+            android:src="@drawable/no_image_available"
+            android:tint="@android:color/white"/>
 
         <RelativeLayout
             android:id="@+id/transparentOverlay"
