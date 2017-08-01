@@ -1,6 +1,7 @@
 package us.wetpaws.wydlist;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -47,9 +48,12 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
     FirebaseUser mFirebaseUser;
 
     KenBurnsView backgroundImage;
+    TextView appNameTextField;
     TextView termConditionButtonText;
     TextView privacyButtonText;
     SignInButton signUpButton;
+
+    Typeface logoFont;
 
     private String usernamePath = FirebaseUtil.getUsernamePath();
 
@@ -78,6 +82,10 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         backgroundImage = (KenBurnsView) findViewById(R.id.ken_burn_background_img);
+
+        appNameTextField = (TextView) findViewById(R.id.app_name_text);
+        logoFont = Typeface.createFromAsset(getAssets(), "fonts/pigae.ttf");
+        appNameTextField.setTypeface(logoFont);
 
         signUpButton = (SignInButton) findViewById(R.id.sign_in_button);
         signUpButton.setSize(SignInButton.SIZE_WIDE);
