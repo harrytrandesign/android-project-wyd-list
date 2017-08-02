@@ -13,6 +13,7 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -84,6 +85,8 @@ public class CommentFragment extends Fragment {
         discussionEdittext = (EditText) rootView.findViewById(R.id.user_comment_input);
         discussionSubmitButton = (ImageView) rootView.findViewById(R.id.comment_submit_button);
         nativeCommentExpressAdView = (NativeExpressAdView) rootView.findViewById(R.id.comment_native_express_adview);
+
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         AdRequest adRequest = new AdRequest.Builder().build();
 

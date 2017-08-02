@@ -23,7 +23,7 @@
             android:id="@+id/transparentOverlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/black_transparent"/>
+            android:background="@color/black_transparent_less"/>
 
         <TextView
             android:id="@+id/bucketlist_title_text"

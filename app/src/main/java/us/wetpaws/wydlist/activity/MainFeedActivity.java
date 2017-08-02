@@ -116,7 +116,7 @@ public class MainFeedActivity extends AppCompatActivity {
     // Load the navigation menu header, such as header background image, profile name, etc
     private void loadNavHeader() {
         textName.setText(mFirebaseUser.getDisplayName());
-        imageNavHeaderBackground.setImageResource(R.drawable.park_art);
+        imageNavHeaderBackground.setImageResource(R.drawable.tropical_beach_hd);
 
 //        Glide.with(this).load(urlNavHeaderBg)
 //                .crossFade()
