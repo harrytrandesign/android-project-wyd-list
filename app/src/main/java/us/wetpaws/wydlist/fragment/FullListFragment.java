@@ -1,14 +1,30 @@
 package us.wetpaws.wydlist.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.NativeExpressAdView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+
 import us.wetpaws.wydlist.R;
+import us.wetpaws.wydlist.activity.CommentActivity;
+import us.wetpaws.wydlist.adapter.FirebaseUtil;
+import us.wetpaws.wydlist.model.BucketList;
+import us.wetpaws.wydlist.model.User;
+import us.wetpaws.wydlist.viewholder.FeedViewHolder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,53 +35,73 @@ import us.wetpaws.wydlist.R;
  * create an instance of this fragment.
  */
 public class FullListFragment extends Fragment {
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private RecyclerView.Adapter<FeedViewHolder> mFullListAdapter;
 
     public FullListFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FullListFragment.
-     */
     public static FullListFragment newInstance(String param1, String param2) {
         FullListFragment fragment = new FullListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_full_list, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_full_list, container, false);
+        RecyclerView full_list_recyclerview = (RecyclerView) rootView.findViewById(R.id.user_wydlist_full_list_recyclerview);
+        NativeExpressAdView full_list_native_express_adview = (NativeExpressAdView) rootView.findViewById(R.id.nativeExpressAdView_public_full_list);
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        User user = FirebaseUtil.getUser();
+        DatabaseReference fullFeedReference = FirebaseUtil.getMainListRef();
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        linearLayoutManager.setReverseLayout(true);
+
+        mFullListAdapter = new FirebaseRecyclerAdapter<BucketList, FeedViewHolder>(
+                BucketList.class,
+                R.layout.item_feed_wyd_list,
+                FeedViewHolder.class,
+                fullFeedReference
+        ) {
+            @Override
+            protected void populateViewHolder(FeedViewHolder viewHolder, BucketList model, int position) {
+                final String feedPostKey = ((FirebaseRecyclerAdapter) mFullListAdapter).getRef(position).getKey();
+
+                viewHolder.setBucketTitle(model.getTitle());
+                viewHolder.setBackgroundImage(model.getImageurl());
+                viewHolder.setBucketDateTimestamp(DateUtils.getRelativeTimeSpanString((long) model.getTimestamp()).toString());
+                viewHolder.setPostClickListener(new FeedViewHolder.PostClickListener() {
+                    @Override
+                    public void showComments() {
+                        Intent intent = new Intent(FullListFragment.this.getActivity(), CommentActivity.class);
+                        intent.putExtra(CommentActivity.POST_KEY_EXTRA, feedPostKey);
+                        FullListFragment.this.startActivity(intent);
+                    }
+                });
+            }
+        };
+
+        full_list_recyclerview.setLayoutManager(linearLayoutManager);
+        full_list_recyclerview.setAdapter(mFullListAdapter);
+        
+        full_list_native_express_adview.loadAd(adRequest);
+
+        return rootView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -84,16 +120,6 @@ public class FullListFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
