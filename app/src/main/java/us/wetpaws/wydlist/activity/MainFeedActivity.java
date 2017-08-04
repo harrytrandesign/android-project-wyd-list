@@ -19,10 +19,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ServerValue;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import us.wetpaws.wydlist.MainActivity;
@@ -33,9 +36,8 @@ import us.wetpaws.wydlist.fragment.AdventureFragment;
 import us.wetpaws.wydlist.fragment.DestinationFragment;
 import us.wetpaws.wydlist.fragment.HomeFragment;
 import us.wetpaws.wydlist.fragment.MyListFragment;
+import us.wetpaws.wydlist.model.BucketList;
 import us.wetpaws.wydlist.model.User;
-
-import static us.wetpaws.wydlist.R.id.fab;
 
 public class MainFeedActivity extends AppCompatActivity {
 
@@ -50,6 +52,8 @@ public class MainFeedActivity extends AppCompatActivity {
     private TextView textName;
     private Toolbar toolbar;
     private FloatingActionButton floatingActionButton;
+    DatabaseReference mainFeedReference;
+    DatabaseReference userFeedReference;
 
     // Static image for testing the background
     private static final String urlNavHeaderBg = "menu_header.jpg";
@@ -81,7 +85,7 @@ public class MainFeedActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        floatingActionButton = (FloatingActionButton) findViewById(fab);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
 
         // Navigation Drawer View's Header Section
         navHeader = navigationView.getHeaderView(0);
@@ -98,9 +102,19 @@ public class MainFeedActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainFeedActivity.this, "Do something later.", Toast.LENGTH_SHORT).show();
-                User user = FirebaseUtil.getUser();
+                final User user = FirebaseUtil.getUser();
 
+                mainFeedReference = FirebaseUtil.getMainListRef();
+                final String randomPostKey = mainFeedReference.push().getKey();
+
+                BucketList bucketList = new BucketList(user, "Created new task", "http://www.redspottedhanky.com/images/215/original/colchester-zoo_monkey_colchester_46190563.jpg", ServerValue.TIMESTAMP);
+                mainFeedReference.child(randomPostKey).setValue(bucketList).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        userFeedReference = FirebaseUtil.getUserListRef();
+                        userFeedReference.child(user.getUserid()).child(randomPostKey).setValue(true);
+                    }
+                });
             }
         });
 
@@ -296,12 +310,8 @@ public class MainFeedActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        if (navItemIndex == 0) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
-//        }
-//        if (navItemIndex > 0) {
-//            getMenuInflater().inflate(R.menu.notifications, menu);
-//        }
+
         return true;
     }
 
@@ -313,12 +323,6 @@ public class MainFeedActivity extends AppCompatActivity {
             case R.id.action_logout:
 
                 signOffUser();
-//                FirebaseAuth.getInstance().signOut();
-//
-//                Intent mainIntent = new Intent(MainFeedActivity.this, MainActivity.class);
-//                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(mainIntent);
-//                finish();
 
                 break;
 

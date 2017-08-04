@@ -7,7 +7,6 @@ package us.wetpaws.wydlist.model;
 public class BucketList {
 
     private User user;
-    private String postId;
     private String title;
     private String imageurl;
     private Object timestamp;
@@ -15,9 +14,8 @@ public class BucketList {
     public BucketList() {
     }
 
-    public BucketList(User user, String postId, String title, String imageurl, Object timestamp) {
+    public BucketList(User user, String title, String imageurl, Object timestamp) {
         this.user = user;
-        this.postId = postId;
         this.title = title;
         this.imageurl = imageurl;
         this.timestamp = timestamp;
@@ -29,14 +27,6 @@ public class BucketList {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public String getPostId() {
-        return postId;
-    }
-
-    public void setPostId(String postId) {
-        this.postId = postId;
     }
 
     public String getTitle() {
