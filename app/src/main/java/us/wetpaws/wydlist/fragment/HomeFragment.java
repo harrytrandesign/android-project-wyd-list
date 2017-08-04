@@ -38,25 +38,18 @@ import us.wetpaws.wydlist.viewholder.FeedViewHolder;
  */
 public class HomeFragment extends Fragment {
 
+    private OnFragmentInteractionListener mListener;
+    private static final int FEED_ITEM_CALL = 50;
     private RecyclerView.Adapter<FeedViewHolder> mListAdapter;
     DatabaseReference mainFeedReference;
     FirebaseUser firebaseUser;
-    User user;
     Query mainQuery;
-
-    private OnFragmentInteractionListener mListener;
+    User user;
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
 
@@ -78,7 +71,7 @@ public class HomeFragment extends Fragment {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         user = FirebaseUtil.getUser();
         mainFeedReference = FirebaseUtil.getMainListRef();
-        mainQuery = mainFeedReference;
+        mainQuery = mainFeedReference.limitToLast(FEED_ITEM_CALL);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setStackFromEnd(true);
@@ -128,12 +121,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
+
     }
 
     @Override

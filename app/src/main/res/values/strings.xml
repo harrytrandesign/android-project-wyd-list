@@ -12,18 +12,18 @@
     <string name="closeDrawer">close_drawer</string>
 
     <!-- Navigation Drawer menu labels -->
-    <string name="nav_profile">My Profile</string>
-    <string name="nav_list">My List</string>
-    <string name="nav_public">Public</string>
-    <string name="nav_search">Search</string>
+    <string name="nav_list">Recent Posts</string>
+    <string name="nav_profile">Personal Posts</string>
+    <string name="nav_public">All Posts</string>
+    <string name="nav_search">Search Posts</string>
     <string name="nav_feedback">Feedback</string>
 
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_item_activity_titles">
-        <item>My Profile</item>
-        <item>My List</item>
-        <item>Public</item>
-        <item>Search</item>
+        <item>Recent Posts</item>
+        <item>Personal Posts</item>
+        <item>All Posts</item>
+        <item>Search Posts</item>
         <item>Feedback</item>
     </string-array>
 

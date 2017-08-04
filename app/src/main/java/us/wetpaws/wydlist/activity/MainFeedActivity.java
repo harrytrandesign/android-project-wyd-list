@@ -27,11 +27,13 @@ import com.google.firebase.auth.FirebaseUser;
 import de.hdodenhof.circleimageview.CircleImageView;
 import us.wetpaws.wydlist.MainActivity;
 import us.wetpaws.wydlist.R;
+import us.wetpaws.wydlist.adapter.FirebaseUtil;
 import us.wetpaws.wydlist.adapter.GlideUtil;
 import us.wetpaws.wydlist.fragment.AdventureFragment;
 import us.wetpaws.wydlist.fragment.DestinationFragment;
 import us.wetpaws.wydlist.fragment.HomeFragment;
 import us.wetpaws.wydlist.fragment.MyListFragment;
+import us.wetpaws.wydlist.model.User;
 
 import static us.wetpaws.wydlist.R.id.fab;
 
@@ -97,6 +99,8 @@ public class MainFeedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainFeedActivity.this, "Do something later.", Toast.LENGTH_SHORT).show();
+                User user = FirebaseUtil.getUser();
+
             }
         });
 
@@ -125,8 +129,8 @@ public class MainFeedActivity extends AppCompatActivity {
 
         GlideUtil.loadProfileIcon(mFirebaseUser.getPhotoUrl().toString(), imageProfile);
 
-        // TODO: Remove later - I wanna see what this does.
-        navigationView.getMenu().getItem(1).setActionView(R.layout.menu_dot);
+//        // TODO: Remove later - I wanna see what this does.
+//        navigationView.getMenu().getItem(1).setActionView(R.layout.menu_dot);
     }
 
     private void signOffUser() {
