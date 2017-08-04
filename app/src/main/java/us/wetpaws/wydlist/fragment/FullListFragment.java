@@ -38,6 +38,14 @@ public class FullListFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private RecyclerView.Adapter<FeedViewHolder> mFullListAdapter;
+    FirebaseUser firebaseUser;
+    RecyclerView full_list_recyclerview;
+    DatabaseReference fullFeedReference;
+    NativeExpressAdView full_list_native_express_adview;
+    LinearLayoutManager linearLayoutManager;
+    AdRequest adRequest;
+    User user;
+    View rootView;
 
     public FullListFragment() {
         // Required empty public constructor
@@ -56,16 +64,16 @@ public class FullListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_full_list, container, false);
-        RecyclerView full_list_recyclerview = (RecyclerView) rootView.findViewById(R.id.user_wydlist_full_list_recyclerview);
-        NativeExpressAdView full_list_native_express_adview = (NativeExpressAdView) rootView.findViewById(R.id.nativeExpressAdView_public_full_list);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        rootView = inflater.inflate(R.layout.fragment_full_list, container, false);
+        full_list_recyclerview = (RecyclerView) rootView.findViewById(R.id.user_wydlist_full_list_recyclerview);
+        full_list_native_express_adview = (NativeExpressAdView) rootView.findViewById(R.id.nativeExpressAdView_public_full_list);
+        adRequest = new AdRequest.Builder().build();
 
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        User user = FirebaseUtil.getUser();
-        DatabaseReference fullFeedReference = FirebaseUtil.getMainListRef();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseUtil.getUser();
+        fullFeedReference = FirebaseUtil.getMainListRef();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         linearLayoutManager.setReverseLayout(true);
@@ -96,7 +104,7 @@ public class FullListFragment extends Fragment {
 
         full_list_recyclerview.setLayoutManager(linearLayoutManager);
         full_list_recyclerview.setAdapter(mFullListAdapter);
-        
+
         full_list_native_express_adview.loadAd(adRequest);
 
         return rootView;
