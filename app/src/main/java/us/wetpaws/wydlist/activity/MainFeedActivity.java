@@ -121,16 +121,7 @@ public class MainFeedActivity extends AppCompatActivity {
     private void loadNavHeader() {
         textName.setText(mFirebaseUser.getDisplayName());
         imageNavHeaderBackground.setImageResource(R.drawable.tropical_beach_hd);
-
-//        Glide.with(this).load(urlNavHeaderBg)
-//                .crossFade()
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .into(imageNavHeaderBackground);
-
         GlideUtil.loadProfileIcon(mFirebaseUser.getPhotoUrl().toString(), imageProfile);
-
-//        // TODO: Remove later - I wanna see what this does.
-//        navigationView.getMenu().getItem(1).setActionView(R.layout.menu_dot);
     }
 
     private void signOffUser() {
