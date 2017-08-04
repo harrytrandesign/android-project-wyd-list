@@ -32,8 +32,8 @@ import us.wetpaws.wydlist.MainActivity;
 import us.wetpaws.wydlist.R;
 import us.wetpaws.wydlist.adapter.FirebaseUtil;
 import us.wetpaws.wydlist.adapter.GlideUtil;
-import us.wetpaws.wydlist.fragment.AdventureFragment;
 import us.wetpaws.wydlist.fragment.DestinationFragment;
+import us.wetpaws.wydlist.fragment.FullListFragment;
 import us.wetpaws.wydlist.fragment.HomeFragment;
 import us.wetpaws.wydlist.fragment.MyListFragment;
 import us.wetpaws.wydlist.model.BucketList;
@@ -194,8 +194,8 @@ public class MainFeedActivity extends AppCompatActivity {
                 MyListFragment myListFragment = new MyListFragment();
                 return myListFragment;
             case 2:
-                AdventureFragment adventureFragment = new AdventureFragment();
-                return adventureFragment;
+                FullListFragment fullListPublicFragment = new FullListFragment();
+                return fullListPublicFragment;
             case 3:
                 DestinationFragment destinationFragment = new DestinationFragment();
                 return destinationFragment;
