@@ -29,6 +29,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import us.wetpaws.wydlist.activity.AgeVerifyConsent;
@@ -160,6 +161,8 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
 
                             mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+                            final DatabaseReference mLogDetailsReference = FirebaseUtil.getLogDetailsRef();
+
                             mFirebaseDatabase.child(usernamePath).child(mFirebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -168,6 +171,8 @@ public class SignInPageActivity extends BaseActivity implements View.OnClickList
                                         Toast.makeText(SignInPageActivity.this, "User already exists in the database.", Toast.LENGTH_SHORT).show();
 
                                         hideProgressDialog();
+
+                                        mLogDetailsReference.child(mFirebaseUser.getUid()).push().setValue(ServerValue.TIMESTAMP);
 
                                         Intent switchIntent = new Intent(SignInPageActivity.this, MainFeedActivity.class);
                                         switchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

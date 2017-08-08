@@ -17,6 +17,7 @@
     <dimen name="medium_float_font">28sp</dimen>
     <dimen name="large_font">36sp</dimen>
     <dimen name="xlarge_font">48sp</dimen>
+    <dimen name="xxlarge_font">64sp</dimen>
 
     <!-- Custom Font Sizes -->
     <dimen name="comment_font">10sp</dimen>
