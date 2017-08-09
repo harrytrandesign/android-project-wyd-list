@@ -56,4 +56,11 @@
     <string name="display_name_want_todo">Display Name Wants To Do</string>
     <string name="placeholder_string">Sample Data</string>
     <!-- End String set from tutorial. -->
+
+    <string name="new_wyd_title">Title</string>
+    <string name="wyd_title_hint">Create a title</string>
+    <string name="new_tag_title">Tag</string>
+    <string name="tag_hint">Add a tag</string>
+    <string name="new_photo_title">Photo</string>
+    <string name="photo_select_hint">Select an image</string>
 </resources>

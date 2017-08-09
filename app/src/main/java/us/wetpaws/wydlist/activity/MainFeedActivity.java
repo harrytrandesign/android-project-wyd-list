@@ -20,26 +20,21 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ServerValue;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import us.wetpaws.wydlist.MainActivity;
 import us.wetpaws.wydlist.R;
-import us.wetpaws.wydlist.adapter.FirebaseUtil;
+import us.wetpaws.wydlist.adapter.BucketListItemDialogBoxOpen;
 import us.wetpaws.wydlist.adapter.GlideUtil;
 import us.wetpaws.wydlist.fragment.DestinationFragment;
 import us.wetpaws.wydlist.fragment.FullListFragment;
 import us.wetpaws.wydlist.fragment.HomeFragment;
 import us.wetpaws.wydlist.fragment.MyListFragment;
-import us.wetpaws.wydlist.model.BucketList;
-import us.wetpaws.wydlist.model.User;
 
-public class MainFeedActivity extends AppCompatActivity {
+public class MainFeedActivity extends AppCompatActivity implements View.OnClickListener {
 
     FirebaseAuth mFirebaseAuth;
     FirebaseUser mFirebaseUser;
@@ -99,24 +94,7 @@ public class MainFeedActivity extends AppCompatActivity {
         // Load toolbar titles from the string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final User user = FirebaseUtil.getUser();
-
-                mainFeedReference = FirebaseUtil.getMainListRef();
-                final String randomPostKey = mainFeedReference.push().getKey();
-
-                BucketList bucketList = new BucketList(user, "Created new task", "http://www.redspottedhanky.com/images/215/original/colchester-zoo_monkey_colchester_46190563.jpg", ServerValue.TIMESTAMP);
-                mainFeedReference.child(randomPostKey).setValue(bucketList).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        userFeedReference = FirebaseUtil.getUserListRef();
-                        userFeedReference.child(user.getUserid()).child(randomPostKey).setValue(true);
-                    }
-                });
-            }
-        });
+        floatingActionButton.setOnClickListener(this);
 
         // Load the navigation menu header
         loadNavHeader();
@@ -340,6 +318,32 @@ public class MainFeedActivity extends AppCompatActivity {
             floatingActionButton.show();
         } else {
             floatingActionButton.hide();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.fab:
+
+                BucketListItemDialogBoxOpen bucketListItemDialogBoxOpen = new BucketListItemDialogBoxOpen(this);
+                bucketListItemDialogBoxOpen.cloneInContext(this);
+
+//                final User user = FirebaseUtil.getUser();
+//
+//                mainFeedReference = FirebaseUtil.getMainListRef();
+//                final String randomPostKey = mainFeedReference.push().getKey();
+//
+//                BucketList bucketList = new BucketList(user, "Created new task", "http://www.redspottedhanky.com/images/215/original/colchester-zoo_monkey_colchester_46190563.jpg", ServerValue.TIMESTAMP);
+//                mainFeedReference.child(randomPostKey).setValue(bucketList).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        userFeedReference = FirebaseUtil.getUserListRef();
+//                        userFeedReference.child(user.getUserid()).child(randomPostKey).setValue(true);
+//                    }
+//                });
+
+                break;
         }
     }
 }

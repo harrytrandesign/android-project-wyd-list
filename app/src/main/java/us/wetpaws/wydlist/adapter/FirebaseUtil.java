@@ -92,6 +92,10 @@ public class FirebaseUtil {
         return getBaseRef().child("login_log");
     }
 
+    public static DatabaseReference getTagRef() {
+        return getBaseRef().child("tag_list");
+    }
+
     public static DatabaseReference getMissingPhotoRef() {
         // Grab the Push ID:true so I can find them and change them to false when I add a picture in.
         return getBaseRef().child("missing_photo");

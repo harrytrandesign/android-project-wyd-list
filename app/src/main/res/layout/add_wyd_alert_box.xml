@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:padding="@dimen/standard_padding">
+
+    <TextView
+        android:id="@+id/wyd_title_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_wyd_title"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/tiny_font"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/wyd_title_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/wyd_title_hint"
+        android:inputType="textShortMessage|textAutoComplete|textCapSentences|textAutoCorrect"
+        android:maxLength="100"/>
+
+    <TextView
+        android:id="@+id/wyd_image_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_photo_title"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/tiny_font"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/wyd_image_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/photo_select_hint"
+        android:inputType="textShortMessage|textAutoComplete|textCapSentences|textAutoCorrect"
+        android:maxLength="500"
+        android:maxLines="1"
+        android:singleLine="true"/>
+
+    <TextView
+        android:id="@+id/wyd_tag_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_tag_title"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/tiny_font"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/wyd_tag_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tag_hint"
+        android:inputType="textShortMessage|textAutoComplete|textCapWords"
+        android:maxLength="40"/>
+
+</LinearLayout>
