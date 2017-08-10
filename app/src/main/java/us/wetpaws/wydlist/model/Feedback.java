@@ -6,9 +6,9 @@ package us.wetpaws.wydlist.model;
 
 public class Feedback {
 
-    User user;
-    String feedback;
-    Object timestamp;
+    private User user;
+    private String feedback;
+    private Object timestamp;
 
     public Feedback() {
     }
