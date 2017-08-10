@@ -58,9 +58,9 @@
     <!-- End String set from tutorial. -->
 
     <string name="new_wyd_title">Title</string>
-    <string name="wyd_title_hint">Create a title</string>
+    <string name="wyd_title_hint">Where you want to go, what you want to do?</string>
     <string name="new_tag_title">Tag</string>
-    <string name="tag_hint">Add a tag</string>
-    <string name="new_photo_title">Photo</string>
-    <string name="photo_select_hint">Select an image</string>
+    <string name="tag_hint">Include a tag to describe this item</string>
+    <string name="new_photo_title">Image</string>
+    <string name="photo_select_hint">ADD IMAGE</string>
 </resources>

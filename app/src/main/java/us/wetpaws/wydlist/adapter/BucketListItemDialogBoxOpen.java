@@ -121,7 +121,8 @@ public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                //TODO Uncomment this setEnabled in the live app.
+//                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
             }
         });
         alertDialog.show();
