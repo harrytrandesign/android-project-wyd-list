@@ -9,14 +9,16 @@ public class Feedback {
     private User user;
     private String feedback;
     private Object timestamp;
+    private Boolean adminread;
 
     public Feedback() {
     }
 
-    public Feedback(User user, String feedback, Object timestamp) {
+    public Feedback(User user, String feedback, Object timestamp, Boolean adminread) {
         this.user = user;
         this.feedback = feedback;
         this.timestamp = timestamp;
+        this.adminread = adminread;
     }
 
     public User getUser() {
@@ -41,5 +43,13 @@ public class Feedback {
 
     public void setTimestamp(Object timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Boolean getAdminread() {
+        return adminread;
+    }
+
+    public void setAdminread(Boolean adminread) {
+        this.adminread = adminread;
     }
 }

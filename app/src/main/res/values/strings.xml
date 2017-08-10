@@ -63,4 +63,7 @@
     <string name="tag_hint">Include a tag to describe this item</string>
     <string name="new_photo_title">Image</string>
     <string name="photo_select_hint">ADD IMAGE</string>
+    <string name="feedback_title">Feedback</string>
+    <string name="new_feedback_title">Feedback (Max 300 characters)</string>
+    <string name="feedback_hint">We want to hear from you.</string>
 </resources>

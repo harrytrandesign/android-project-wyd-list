@@ -25,7 +25,7 @@ import us.wetpaws.wydlist.model.User;
  * Created by HTDWPS on 8/8/17.
  */
 
-public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.OnTouchListener{
+public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.OnTouchListener {
 
     private AlertDialog alertDialog;
     private DatabaseReference mainFeedReference;
@@ -35,7 +35,7 @@ public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.
     private final int MIN_TITLE_LENGTH = 4;
 
     private EditText wyd_title_field;
-    private EditText wyd_image_field;
+    private TextView wyd_image_field;
     private EditText wyd_tag_field;
     private String wyd_title_new;
     private String wyd_image_new;
@@ -67,7 +67,7 @@ public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.
         final User user = FirebaseUtil.getUser();
 
         wyd_title_field = (EditText) view.findViewById(R.id.wyd_title_add);
-        wyd_image_field = (EditText) view.findViewById(R.id.wyd_image_add);
+        wyd_image_field = (TextView) view.findViewById(R.id.wyd_image_add);
         wyd_tag_field = (EditText) view.findViewById(R.id.wyd_tag_add);
         wyd_title_label = (TextView) view.findViewById(R.id.wyd_title_label);
         wyd_image_label = (TextView) view.findViewById(R.id.wyd_image_label);
@@ -79,8 +79,6 @@ public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getContext(), "Submit this info.", Toast.LENGTH_SHORT).show();
-
                         wyd_title_new = wyd_title_field.getText().toString();
                         wyd_title_field.setText("");
                         wyd_tag_new = wyd_tag_field.getText().toString();
@@ -116,8 +114,8 @@ public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.
                         dialogInterface.cancel();
                     }
                 });
-
         alertDialog = alertDialogBuilder.create();
+
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {

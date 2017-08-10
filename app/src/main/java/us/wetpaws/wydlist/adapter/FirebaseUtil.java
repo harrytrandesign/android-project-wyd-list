@@ -101,4 +101,8 @@ public class FirebaseUtil {
         return getBaseRef().child("missing_photo");
     }
 
+    public static DatabaseReference getFeedbackRef() {
+        return getBaseRef().child("feedback");
+    }
+
 }

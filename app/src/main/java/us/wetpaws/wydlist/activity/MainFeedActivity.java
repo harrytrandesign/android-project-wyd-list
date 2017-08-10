@@ -28,6 +28,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import us.wetpaws.wydlist.MainActivity;
 import us.wetpaws.wydlist.R;
 import us.wetpaws.wydlist.adapter.BucketListItemDialogBoxOpen;
+import us.wetpaws.wydlist.adapter.FeedbackDialogBoxOpen;
 import us.wetpaws.wydlist.adapter.GlideUtil;
 import us.wetpaws.wydlist.fragment.DestinationFragment;
 import us.wetpaws.wydlist.fragment.FullListFragment;
@@ -177,6 +178,9 @@ public class MainFeedActivity extends AppCompatActivity implements View.OnClickL
             case 3:
                 DestinationFragment destinationFragment = new DestinationFragment();
                 return destinationFragment;
+            case 4:
+                FeedbackDialogBoxOpen feedbackDialogBoxOpen = new FeedbackDialogBoxOpen(this);
+                feedbackDialogBoxOpen.cloneInContext(this);
             default:
                 return new HomeFragment();
         }
@@ -298,6 +302,12 @@ public class MainFeedActivity extends AppCompatActivity implements View.OnClickL
         int id = item.getItemId();
 
         switch (id) {
+            case R.id.leave_feedback:
+
+                FeedbackDialogBoxOpen feedbackDialogBoxOpen = new FeedbackDialogBoxOpen(this);
+                feedbackDialogBoxOpen.cloneInContext(this);
+
+                break;
             case R.id.action_logout:
 
                 signOffUser();
