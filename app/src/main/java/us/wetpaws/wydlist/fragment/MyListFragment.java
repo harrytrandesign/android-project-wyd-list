@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,8 @@ public class MyListFragment extends Fragment {
 
     String photoResolutionSizeString = "s300-c";
     private RecyclerView.Adapter<PrivateViewHolder> mListAdapter;
-    FirebaseRecyclerAdapter<BucketList, PrivateViewHolder> mPersonalAdapter;
+    FirebaseRecyclerAdapter<BucketList, PrivateViewHolder> mUserAdapter;
+    FirebaseRecyclerAdapter<Boolean, PrivateViewHolder> mAdapter;
     DatabaseReference userFeedReference;
     DatabaseReference mainFeedReference;
     private OnFragmentInteractionListener mListener;
@@ -97,22 +99,49 @@ public class MyListFragment extends Fragment {
         Query privateQuery = userFeedReference.child(user.getUserid());
         mainFeedReference = FirebaseUtil.getMainListRef();
 
-        mPersonalAdapter = new FirebaseRecyclerAdapter<BucketList, PrivateViewHolder>(
-                BucketList.class,
+        mAdapter = new FirebaseRecyclerAdapter<Boolean, PrivateViewHolder>(
+                Boolean.class,
                 R.layout.item_personal_wyd_list,
                 PrivateViewHolder.class,
-                privateQuery
+                userFeedReference.child(user.getUserid())
         ) {
             @Override
-            protected void populateViewHolder(final PrivateViewHolder viewHolder, BucketList model, int position) {
-                String feedPostKey = this.getRef(position).getKey();
+            protected void populateViewHolder(final PrivateViewHolder viewHolder, Boolean model, int position) {
+                String feedKey = this.getRef(position).getKey();
 
-                mainFeedReference.child(feedPostKey).addValueEventListener(new ValueEventListener() {
+                mainFeedReference.child(feedKey).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         BucketList bucketList = dataSnapshot.getValue(BucketList.class);
-                        TextView titleView = (TextView) viewHolder.itemView.findViewById(R.id.profile_bucket_title);
-                        titleView.setText(bucketList.getTitle());
+                        viewHolder.setPersonal_bucketlist_title(bucketList.getTitle());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        };
+
+        mUserAdapter = new FirebaseRecyclerAdapter<BucketList, PrivateViewHolder>(
+                BucketList.class,
+                R.layout.item_personal_wyd_list,
+                PrivateViewHolder.class,
+                userFeedReference.child(user.getUserid())
+        ) {
+            @Override
+            protected void populateViewHolder(final PrivateViewHolder viewHolder, BucketList model, int position) {
+                String feedKey = this.getRef(position).getKey();
+
+                mainFeedReference.child(feedKey).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        BucketList bucketList = dataSnapshot.getValue(BucketList.class);
+//                        TextView textView = (TextView) viewHolder.itemView.findViewById(R.id.profile_bucket_title);
+//                        assert bucketList != null;
+//                        textView.setText(bucketList.getTitle());
+                        viewHolder.setPersonal_bucketlist_title(bucketList.getTitle());
                     }
 
                     @Override
@@ -142,23 +171,41 @@ public class MyListFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         linearLayoutManager.setReverseLayout(true);
 
-        mListAdapter = new FirebaseRecyclerAdapter<BucketList, PrivateViewHolder>(
-                BucketList.class,
-                R.layout.item_personal_wyd_list,
-                PrivateViewHolder.class,
-                userFeedReference
-        ) {
+        mListAdapter = new RecyclerView.Adapter<PrivateViewHolder>() {
             @Override
-            protected void populateViewHolder(PrivateViewHolder viewHolder, BucketList model, int position) {
-                String feedPostKey = ((FirebaseRecyclerAdapter) mListAdapter).getRef(position).getKey();
+            public PrivateViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                Log.i("title", "One");
+                return null;
+            }
 
-                viewHolder.setPersonal_bucketlist_title(model.getTitle());
+            @Override
+            public void onBindViewHolder(PrivateViewHolder holder, int position) {
+
+            }
+
+            @Override
+            public int getItemCount() {
+                return 0;
             }
         };
 
+//        mListAdapter = new FirebaseRecyclerAdapter<BucketList, PrivateViewHolder>(
+//                BucketList.class,
+//                R.layout.item_personal_wyd_list,
+//                PrivateViewHolder.class,
+//                userFeedReference
+//        ) {
+//            @Override
+//            protected void populateViewHolder(PrivateViewHolder viewHolder, BucketList model, int position) {
+//                String feedPostKey = ((FirebaseRecyclerAdapter) mListAdapter).getRef(position).getKey();
+//
+//                viewHolder.setPersonal_bucketlist_title(model.getTitle());
+//            }
+//        };
+
         wydRecyclerView.setLayoutManager(linearLayoutManager);
         wydRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
-        wydRecyclerView.setAdapter(mListAdapter);
+        wydRecyclerView.setAdapter(mAdapter);
 
         return rootView;
     }
