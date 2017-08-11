@@ -15,8 +15,11 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import us.wetpaws.wydlist.R;
 import us.wetpaws.wydlist.adapter.FirebaseUtil;
@@ -38,6 +41,8 @@ public class MyListFragment extends Fragment {
 
     String photoResolutionSizeString = "s300-c";
     private RecyclerView.Adapter<PrivateViewHolder> mListAdapter;
+    FirebaseRecyclerAdapter<BucketList, PrivateViewHolder> mPersonalAdapter;
+    DatabaseReference userFeedReference;
     DatabaseReference mainFeedReference;
     private OnFragmentInteractionListener mListener;
     FirebaseUser mFirebaseUser;
@@ -88,9 +93,49 @@ public class MyListFragment extends Fragment {
         GlideUtil.loadImage(newImageString, profileImageView);
         profileDisplayName.setText(String.format("%s Wants To Do:", user.getUserDisplayName()));
 
+        userFeedReference = FirebaseUtil.getUserListRef();
+        Query privateQuery = userFeedReference.child(user.getUserid());
         mainFeedReference = FirebaseUtil.getMainListRef();
 
-        Query mainQuery = mainFeedReference;
+        mPersonalAdapter = new FirebaseRecyclerAdapter<BucketList, PrivateViewHolder>(
+                BucketList.class,
+                R.layout.item_personal_wyd_list,
+                PrivateViewHolder.class,
+                privateQuery
+        ) {
+            @Override
+            protected void populateViewHolder(final PrivateViewHolder viewHolder, BucketList model, int position) {
+                String feedPostKey = this.getRef(position).getKey();
+
+                mainFeedReference.child(feedPostKey).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        BucketList bucketList = dataSnapshot.getValue(BucketList.class);
+                        TextView titleView = (TextView) viewHolder.itemView.findViewById(R.id.profile_bucket_title);
+                        titleView.setText(bucketList.getTitle());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        };
+
+        // Produced an error.
+//        userFeedReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                BucketList bucketList = dataSnapshot.getValue(BucketList.class);
+//                Log.i("title", bucketList.getTitle().toString());
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setStackFromEnd(true);
@@ -101,7 +146,7 @@ public class MyListFragment extends Fragment {
                 BucketList.class,
                 R.layout.item_personal_wyd_list,
                 PrivateViewHolder.class,
-                mainQuery
+                userFeedReference
         ) {
             @Override
             protected void populateViewHolder(PrivateViewHolder viewHolder, BucketList model, int position) {
