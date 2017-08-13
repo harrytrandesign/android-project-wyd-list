@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ServerValue;
 
 import us.wetpaws.wydlist.R;
-import us.wetpaws.wydlist.SignInPageActivity;
 import us.wetpaws.wydlist.adapter.FirebaseUtil;
 import us.wetpaws.wydlist.model.BucketList;
 import us.wetpaws.wydlist.model.User;
@@ -57,6 +56,7 @@ public class UploadNewContent extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_new_content);
+        getSupportActionBar().setTitle(R.string.upload_new_content);
 
         mainFeedReference = FirebaseUtil.getMainListRef();
         tagFeedReference = FirebaseUtil.getTagRef();
