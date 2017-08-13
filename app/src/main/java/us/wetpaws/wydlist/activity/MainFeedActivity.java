@@ -27,7 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import de.hdodenhof.circleimageview.CircleImageView;
 import us.wetpaws.wydlist.MainActivity;
 import us.wetpaws.wydlist.R;
-import us.wetpaws.wydlist.adapter.BucketListItemDialogBoxOpen;
+import us.wetpaws.wydlist.SignInPageActivity;
 import us.wetpaws.wydlist.adapter.FeedbackDialogBoxOpen;
 import us.wetpaws.wydlist.adapter.GlideUtil;
 import us.wetpaws.wydlist.fragment.DestinationFragment;
@@ -336,8 +336,11 @@ public class MainFeedActivity extends AppCompatActivity implements View.OnClickL
         switch (view.getId()) {
             case R.id.fab:
 
-                BucketListItemDialogBoxOpen bucketListItemDialogBoxOpen = new BucketListItemDialogBoxOpen(this);
-                bucketListItemDialogBoxOpen.cloneInContext(this);
+                Intent switchIntent = new Intent(MainFeedActivity.this, UploadNewContent.class);
+                startActivity(switchIntent);
+
+//                BucketListItemDialogBoxOpen bucketListItemDialogBoxOpen = new BucketListItemDialogBoxOpen(this);
+//                bucketListItemDialogBoxOpen.cloneInContext(this);
 
 //                final User user = FirebaseUtil.getUser();
 //

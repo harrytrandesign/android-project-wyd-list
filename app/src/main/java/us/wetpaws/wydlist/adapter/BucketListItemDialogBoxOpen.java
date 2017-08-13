@@ -3,6 +3,8 @@ package us.wetpaws.wydlist.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -25,7 +27,7 @@ import us.wetpaws.wydlist.model.User;
  * Created by HTDWPS on 8/8/17.
  */
 
-public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.OnTouchListener {
+public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.OnTouchListener, View.OnClickListener {
 
     private AlertDialog alertDialog;
     private DatabaseReference mainFeedReference;
@@ -33,9 +35,15 @@ public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.
     private DatabaseReference userFeedReference;
     private DatabaseReference missingPhotoReference;
     private final int MIN_TITLE_LENGTH = 4;
+    protected static final int CAMERA_REQUEST = 0;
+    protected static final int GALLERY_PICTURE = 1;
+    private Intent pictureActionIntent = null;
+    String selectedImagePath;
+    Bitmap bitmap;
 
     private EditText wyd_title_field;
-    private TextView wyd_image_field;
+    private TextView wyd_camera_open;
+    private TextView wyd_gallery_open;
     private EditText wyd_tag_field;
     private String wyd_title_new;
     private String wyd_image_new;
@@ -67,7 +75,8 @@ public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.
         final User user = FirebaseUtil.getUser();
 
         wyd_title_field = (EditText) view.findViewById(R.id.wyd_title_add);
-        wyd_image_field = (TextView) view.findViewById(R.id.wyd_image_add);
+        wyd_camera_open = (TextView) view.findViewById(R.id.wyd_image_add_camera);
+        wyd_gallery_open = (TextView) view.findViewById(R.id.wyd_image_add_gallery);
         wyd_tag_field = (EditText) view.findViewById(R.id.wyd_tag_add);
         wyd_title_label = (TextView) view.findViewById(R.id.wyd_title_label);
         wyd_image_label = (TextView) view.findViewById(R.id.wyd_image_label);
@@ -94,9 +103,9 @@ public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.
                                 userFeedReference = FirebaseUtil.getUserListRef();
                                 userFeedReference.child(user.getUserid()).child(randomPostKey).setValue(true);
 
-                                if (wyd_image_field.getText().toString().equals("")) {
-                                    missingPhotoReference.child(user.getUserid()).child(randomPostKey).setValue(true);
-                                }
+//                                if (wyd_camera_open.getText().toString().equals("")) {
+//                                    missingPhotoReference.child(user.getUserid()).child(randomPostKey).setValue(true);
+//                                }
 
                                 tagFeedReference.child(wyd_tag_new).setValue(randomPostKey).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -125,11 +134,32 @@ public class BucketListItemDialogBoxOpen extends LayoutInflater implements View.
         });
         alertDialog.show();
 
+        wyd_camera_open.setOnClickListener(this);
+        wyd_gallery_open.setOnClickListener(this);
+
         return layoutInflater;
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+            case R.id.wyd_image_add_camera:
+
+//                startDialog();
+
+                break;
+
+            case R.id.wyd_image_add_gallery:
+
+
+                break;
+        }
+
     }
 }

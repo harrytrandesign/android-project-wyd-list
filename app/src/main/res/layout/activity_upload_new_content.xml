@@ -9,7 +9,7 @@
     android:padding="@dimen/standard_padding">
 
     <TextView
-        android:id="@+id/wyd_title_label"
+        android:id="@+id/wyd_title_label_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/new_wyd_title"
@@ -19,7 +19,7 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/wyd_title_add"
+        android:id="@+id/wyd_title_add_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/wyd_title_hint"
@@ -27,7 +27,7 @@
         android:maxLength="100"/>
 
     <TextView
-        android:id="@+id/wyd_image_label"
+        android:id="@+id/wyd_image_label_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/new_photo_title"
@@ -42,7 +42,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/wyd_image_add_camera"
+            android:id="@+id/wyd_image_add_camera_activity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -56,7 +56,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/wyd_image_add_gallery"
+            android:id="@+id/wyd_image_add_gallery_activity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -72,7 +72,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/wyd_tag_label"
+        android:id="@+id/wyd_tag_label_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/new_tag_title"
@@ -82,11 +82,21 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/wyd_tag_add"
+        android:id="@+id/wyd_tag_add_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tag_hint"
         android:inputType="textShortMessage|textAutoComplete|textCapWords"
         android:maxLength="40"/>
+
+    <Button
+        android:id="@+id/wyd_submit_button_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:background="@color/colorPrimary"
+        android:text="@string/submit_text"
+        android:textColor="@android:color/white"/>
 
 </LinearLayout>
