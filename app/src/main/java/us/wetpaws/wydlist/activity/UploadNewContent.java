@@ -15,6 +15,10 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -28,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ServerValue;
 
 import java.io.File;
+import java.util.regex.Pattern;
 
 import us.wetpaws.wydlist.R;
 import us.wetpaws.wydlist.adapter.FirebaseUtil;
@@ -40,7 +45,8 @@ public class UploadNewContent extends AppCompatActivity implements View.OnClickL
 
     protected static final int CAMERA_REQUEST = 0;
     protected static final int GALLERY_PICTURE = 1;
-    private final int MIN_TITLE_LENGTH = 4;
+    private final int MIN_TITLE_LENGTH = 5;
+    private final int CHAR_LENGTH_LIMIT = 25;
     private Intent pictureActionIntent = null;
     String selectedImagePath;
     Bitmap bitmap;
@@ -58,6 +64,28 @@ public class UploadNewContent extends AppCompatActivity implements View.OnClickL
     String wyd_title_string;
     String wyd_tag_string;
 
+    InputFilter inputFilter = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
+
+            for (int x = i; x < i1; ++x) {
+                if (Pattern.compile("[ ]*").matcher(String.valueOf(charSequence.charAt(x))).matches()) {
+                    return "";
+                }
+            }
+
+            for (int x = i; x < i1; ++x) {
+                if (Character.isWhitespace(charSequence.charAt(x))) {
+                    return "";
+                }
+            }
+
+
+            return null;
+        }
+    };
+
+
     private void closeKeyboard() {
         InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
@@ -66,8 +94,8 @@ public class UploadNewContent extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.getSupportActionBar().setTitle(R.string.upload_new_content);
         setContentView(R.layout.activity_upload_new_content);
-        getSupportActionBar().setTitle(R.string.upload_new_content);
 
         mainFeedReference = FirebaseUtil.getMainListRef();
         tagFeedReference = FirebaseUtil.getTagRef();
@@ -80,27 +108,39 @@ public class UploadNewContent extends AppCompatActivity implements View.OnClickL
         wyd_camera_open_text = (TextView) findViewById(R.id.wyd_image_add_camera_activity);
         wyd_submit_data_button = (Button) findViewById(R.id.wyd_submit_button_activity);
 
+        wyd_title_edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length() < MIN_TITLE_LENGTH) {
+                    wyd_title_edit.setError(getString(R.string.length_title_short_msg));
+                }
+            }
+        });
+        wyd_tag_edit.setFilters(new InputFilter[] {inputFilter, new InputFilter.LengthFilter(CHAR_LENGTH_LIMIT)});
         wyd_camera_open_text.setOnClickListener(this);
         wyd_submit_data_button.setOnClickListener(this);
     }
 
     private void selectImageCameraGallery() {
-        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
         myAlertDialog.setMessage("How do you want to set your picture?");
 
         myAlertDialog.setPositiveButton("Gallery",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Intent pictureActionIntent = null;
-
-                        pictureActionIntent = new Intent(
-                                Intent.ACTION_PICK,
-                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(
-                                pictureActionIntent,
-                                GALLERY_PICTURE);
-
+                        Intent pictureActionIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(pictureActionIntent, GALLERY_PICTURE);
                     }
                 });
 
@@ -108,15 +148,11 @@ public class UploadNewContent extends AppCompatActivity implements View.OnClickL
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
-                        Intent intent = new Intent(
-                                MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(android.os.Environment
-                                .getExternalStorageDirectory(), "temp.jpg");
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                                Uri.fromFile(f));
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
 
-                        startActivityForResult(intent,
-                                CAMERA_REQUEST);
+                        startActivityForResult(intent, CAMERA_REQUEST);
 
                     }
                 });
