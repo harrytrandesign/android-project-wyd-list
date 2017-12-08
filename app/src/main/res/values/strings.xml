@@ -2,7 +2,6 @@
     <string name="app_name">WYDList</string>
 
     <!--Ad string-->
-    <string name="native_ad_express_live_small">ca-app-pub-8585047845719802/7262206779</string>
     <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
 
     <!-- String set from tutorial. -->

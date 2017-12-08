@@ -19,6 +19,7 @@ public class FirebaseUtil {
         return FirebaseDatabase.getInstance().getReference();
     }
 
+
     public static String getCurrentUserId() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {

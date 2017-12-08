@@ -174,7 +174,7 @@ public class UploadNewContent extends AppCompatActivity implements View.OnClickL
                 wyd_title_edit.setText("");
                 wyd_tag_edit.setText("");
 
-                userFeedReference = FirebaseUtil.getUserListRef();
+//                userFeedReference = FirebaseUtil.getUserListRef(); // Repeat.
                 userFeedReference.child(user.getUserid()).child(randomPostKey).setValue(true);
 
                 tagFeedReference.child(wyd_tag_string).setValue(randomPostKey).addOnCompleteListener(new OnCompleteListener<Void>() {
