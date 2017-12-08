@@ -7,3 +7,6 @@
 /build
 /captures
 .externalNativeBuild
+
+# Google services config file
+app/google-services.json
